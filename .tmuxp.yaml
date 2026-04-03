@@ -1,7 +1,7 @@
 session_name: iug2026
 start_directory: ./
 options:
-  mouse: on
+  mouse: "on"
 windows:
   - window_name: editor
   - window_name: run

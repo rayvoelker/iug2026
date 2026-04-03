@@ -11,5 +11,8 @@
   "description": "",
   "dependencies": {
     "reveal.js": "^6.0.0"
+  },
+  "devDependencies": {
+    "htmlhint": "^1.9.2"
   }
 }

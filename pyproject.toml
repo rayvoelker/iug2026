@@ -8,3 +8,9 @@ dependencies = [
     "jinja2>=3.1.6",
     "pyyaml>=6.0.3",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.9",
+    "yamllint>=1.38.0",
+]

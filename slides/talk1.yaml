@@ -50,7 +50,12 @@ slides:
     bullets:
       - 'Created by Simon Willison (co-creator of Django)'
       - '"A tool for exploring and publishing data"'
-      - 'Aimed at <span class="accent">journalists</span>, <span class="accent">museum curators</span>, <span class="accent">archivists</span>, <span class="accent">local governments</span>, and <span class="accent">anyone else who has data</span>'
+      - >-
+        Aimed at <span class="accent">journalists</span>,
+        <span class="accent">museum curators</span>,
+        <span class="accent">archivists</span>,
+        <span class="accent">local governments</span>,
+        and <span class="accent">anyone else who has data</span>
       - "Read-only by default &mdash; safe to hand to anyone"
     link:
       url: "https://datasette.io/"
