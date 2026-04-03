@@ -1,0 +1,12 @@
+session_name: iug2026
+start_directory: ./
+options:
+  mouse: on
+windows:
+  - window_name: editor
+  - window_name: run
+  - window_name: claude
+    panes:
+      - shell_command:
+          - claude
+  - window_name: shell
