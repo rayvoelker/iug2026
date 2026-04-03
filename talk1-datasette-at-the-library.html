@@ -62,22 +62,39 @@
 
 						<li>ILS systems weren't designed for flexible, ad-hoc analysis</li>
 
-						<li>Staff (and, it turns out Patrons) want easier access to catalog data so they end up:</li>
-
-
-						<ul>
-
-							<li>Wrestling with complicated extraction / transform / load steps (ETL)</li>
-
-							<li>Rely on one or two library staff to produce reports or feed them data</li>
-
-							<li>Scrape the Public WebPAC <em>(this is especially bad)</em></li>
-
-						</ul>
-
-
-
 						<li>The people who know the collection best often have the <em>least</em> direct access to the data</li>
+
+
+
+					</ul>
+
+
+
+
+
+
+
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>So What Do People Do?</h2>
+
+
+
+					<ul>
+
+						<li>Wrestling with complicated ETL pipelines</li>
+
+						<li>Rely on one or two staff to produce reports</li>
+
+						<li>Scrape the Public WebPAC <em>(this is especially bad)</em></li>
+
 
 
 					</ul>
@@ -90,9 +107,9 @@
 
 
 					<aside class="notes">
-						On scraping: Riley Walz's "Library Spy" (walzr.com/library-spy)
-scrapes NYPL availability to show real-time checkouts. It went viral.
-The point: if you don't publish your data, people scrape your WebPAC.
+						Riley Walz's "Library Spy" (walzr.com/library-spy) scrapes NYPL
+availability to show real-time checkouts. It went viral.
+If you don't publish your data, people scrape your WebPAC.
 Datasette gives you a proper API instead.
 
 					</aside>
@@ -623,6 +640,9 @@ or want to use this at your library!
 			Reveal.initialize({
 				hash: true,
 				slideNumber: true,
+				minScale: 0.2,
+				maxScale: 1.5,
+				margin: 0.04,
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
 

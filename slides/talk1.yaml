@@ -20,22 +20,21 @@ slides:
       - "Libraries sit on TONS of structured data"
       - "ILS systems weren't designed for flexible, ad-hoc analysis"
       - >-
-        Staff (and, it turns out Patrons) want easier access
-        to catalog data so they end up:
-    sub_bullets:
-      - "Wrestling with complicated extraction / transform / load steps (ETL)"
-      - "Rely on one or two library staff to produce reports or feed them data"
+        The people who know the collection best often have
+        the <em>least</em> direct access to the data
+
+  - type: content
+    title: "So What Do People Do?"
+    bullets:
+      - "Wrestling with complicated ETL pipelines"
+      - "Rely on one or two staff to produce reports"
       - >-
         Scrape the Public WebPAC
         <em>(this is especially bad)</em>
-    bullets_after:
-      - >-
-        The people who know the collection best often have
-        the <em>least</em> direct access to the data
     notes: |
-      On scraping: Riley Walz's "Library Spy" (walzr.com/library-spy)
-      scrapes NYPL availability to show real-time checkouts. It went viral.
-      The point: if you don't publish your data, people scrape your WebPAC.
+      Riley Walz's "Library Spy" (walzr.com/library-spy) scrapes NYPL
+      availability to show real-time checkouts. It went viral.
+      If you don't publish your data, people scrape your WebPAC.
       Datasette gives you a proper API instead.
 
   - type: content
