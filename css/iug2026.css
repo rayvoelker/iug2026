@@ -5,7 +5,7 @@
  *   - Content slides: white body with beige footer bar + small logo
  *
  * Color Palette (from template):
- *   Dark Navy:    #00223D (headings, text -- from template, slightly different from Office #0E2841)
+ *   Dark Navy:    #00223D (headings, text)
  *   Charcoal:     #53575A (body text)
  *   Blue:         #156082 (primary accent)
  *   Light Blue:   #0F9ED5 (links, highlights)
@@ -66,13 +66,17 @@
 }
 
 /* =============================================
-   TITLE SLIDE — split layout matching template
-   Left: white panel with logo (overlay)
-   Right: beige background (via data-background)
+   NAVIGATION CONTROLS — move above footer bar
+   ============================================= */
 
-   The beige fills the whole slide via Reveal's
-   background system. The white logo panel is an
-   overlay positioned on the left.
+.reveal .controls {
+  bottom: 70px !important;
+}
+
+/* =============================================
+   TITLE / CLOSING SLIDES — split layout
+   Left: white panel with logo
+   Right: beige background (via data-background)
    ============================================= */
 
 .reveal .title-slide {
@@ -80,31 +84,33 @@
   padding: 0 !important;
 }
 
-/* White panel overlay on the left side — uses negative margins
-   to break out of Reveal's slide padding and cover full height */
-.reveal .title-slide .title-logo-panel {
-  position: absolute;
-  top: -50%;
-  left: -10%;
-  width: 38%;
-  height: 200%;
+/* White logo panel — lives OUTSIDE .reveal in the DOM
+   so CSS transforms don't break position: fixed centering */
+.title-logo-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 28%;
+  height: 100vh;
   background: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-index: 50;
 }
 
-.reveal .title-slide .title-logo-panel img {
-  width: 65%;
-  max-width: 260px;
+.title-logo-panel img {
+  width: 80%;
+  max-width: 300px;
 }
 
 /* Title content positioned on the right */
 .reveal .title-slide .title-content {
-  margin-left: 38%;
-  padding: 1em 1.5em;
+  margin-left: 30%;
+  padding: 0 2em;
   text-align: left;
+  z-index: 51;
+  position: relative;
 }
 
 .reveal .title-slide .title-content h1 {
@@ -157,6 +163,11 @@
 /* Ensure slide content doesn't overlap the footer */
 .reveal .slides section {
   padding-bottom: 80px;
+}
+
+/* Title slides don't need footer padding */
+.reveal .slides section.title-slide {
+  padding-bottom: 0;
 }
 
 /* Dark background slides (navy) */

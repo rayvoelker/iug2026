@@ -19,6 +19,11 @@
 		<link rel="stylesheet" href="node_modules/reveal.js/dist/plugin/highlight/monokai.css" id="highlight-theme">
 	</head>
 	<body>
+		<!-- Logo panel for title/closing slides — OUTSIDE .reveal so CSS transforms don't affect it -->
+		<div class="title-logo-panel" style="display: none;">
+			<img src="assets/iug2026-logo.jpg" alt="IUG 2026 Chicago">
+		</div>
+
 		<div class="reveal">
 			<!-- Persistent footer bar matching template (beige bar + logo) -->
 			<div class="footer-bar">
@@ -30,9 +35,6 @@
 
 				<!-- TITLE SLIDE -->
 				<section class="title-slide" data-background-color="#F3E4C5" data-state="no-footer">
-					<div class="title-logo-panel">
-						<img src="assets/iug2026-logo.jpg" alt="IUG 2026 Chicago">
-					</div>
 					<div class="title-content">
 						<h1 style="font-size: 1.3em;">From Index Cards to SQLite</h1>
 						<h2>Liberating a Century of Cincinnati News with Datasette</h2>
@@ -615,9 +617,6 @@ Datasette can make it explorable.
 
 				<!-- CLOSING SLIDE -->
 				<section class="title-slide" data-background-color="#F3E4C5" data-state="no-footer">
-					<div class="title-logo-panel">
-						<img src="assets/iug2026-logo.jpg" alt="IUG 2026 Chicago">
-					</div>
 					<div class="title-content">
 						<h1 style="font-size: 1.4em;">Thank You!</h1>
 						<p style="font-size: 0.65em; margin-bottom: 1em;">
@@ -650,21 +649,18 @@ they created this data over nearly 100 years.
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
 
-			// Hide footer bar on title slides and dark background slides
-			Reveal.on('slidechanged', event => {
+			// Toggle footer bar and logo panel based on slide type
+			function updateChrome(slide) {
 				const footer = document.querySelector('.footer-bar');
-				const slide = event.currentSlide;
+				const logoPanel = document.querySelector('.title-logo-panel');
 				const isTitle = slide.classList.contains('title-slide');
 				const hasDarkBg = slide.dataset.backgroundColor === '#00223D' ||
 				                  slide.dataset.backgroundColor === '#0E2841';
 				footer.style.display = (isTitle || hasDarkBg) ? 'none' : 'flex';
-			});
-			Reveal.on('ready', event => {
-				const footer = document.querySelector('.footer-bar');
-				const slide = event.currentSlide;
-				const isTitle = slide.classList.contains('title-slide');
-				footer.style.display = isTitle ? 'none' : 'flex';
-			});
+				logoPanel.style.display = isTitle ? 'flex' : 'none';
+			}
+			Reveal.on('slidechanged', event => updateChrome(event.currentSlide));
+			Reveal.on('ready', event => updateChrome(event.currentSlide));
 		</script>
 	</body>
 </html>
