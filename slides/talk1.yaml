@@ -5,7 +5,7 @@ meta:
   keywords: "Ray Voelker, Cincinnati & Hamilton County Public Library, IUG, IUG 2026, Datasette, Python, SQLite, SQL, Collection Analysis"
   author: "Ray Voelker"
   institution: "Cincinnati &amp; Hamilton County Public Library"
-  email: "ray.voelker@cincinnatilibrary.org"
+  email: "ray.voelker@chpl.org"
   filename: "talk1-datasette-at-the-library.html"
 
 slides:
@@ -17,19 +17,26 @@ slides:
   - type: content
     title: "Your Data Is Trapped"
     bullets:
-      - "Libraries sit on enormous amounts of structured data"
+      - "Libraries sit on TONS of structured data"
       - "ILS systems weren't designed for flexible, ad-hoc analysis"
-      - "Staff who need answers end up:"
+      - >-
+        Staff (and, it turns out Patrons) want easier access
+        to catalog data so they end up:
     sub_bullets:
-      - "Filing tickets with IT"
-      - "Waiting for canned vendor reports"
-      - "Wrestling with CSV exports in Excel"
+      - "Wrestling with complicated extraction / transform / load steps (ETL)"
+      - "Rely on one or two library staff to produce reports or feed them data"
+      - >-
+        Scrape the Public WebPAC
+        <em>(this is especially bad)</em>
     bullets_after:
-      - "The people who know the collection best often have the <em>least</em> direct access to the data"
+      - >-
+        The people who know the collection best often have
+        the <em>least</em> direct access to the data
     notes: |
-      Ask the audience: "A branch manager wants to know how many juvenile graphic novels
-      at their location haven't circulated in 2 years. How long does that take in your
-      current system?"
+      On scraping: Riley Walz's "Library Spy" (walzr.com/library-spy)
+      scrapes NYPL availability to show real-time checkouts. It went viral.
+      The point: if you don't publish your data, people scrape your WebPAC.
+      Datasette gives you a proper API instead.
 
   - type: content
     title: "What If You Could Just... Explore It?"
