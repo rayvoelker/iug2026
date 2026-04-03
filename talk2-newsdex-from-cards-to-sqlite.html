@@ -27,7 +27,8 @@
 
 			<div class="slides">
 
-				<!-- TITLE SLIDE — split layout matching IUG template -->
+
+				<!-- TITLE SLIDE -->
 				<section class="title-slide" data-background-color="#F3E4C5" data-state="no-footer">
 					<div class="title-logo-panel">
 						<img src="assets/iug2026-logo.jpg" alt="IUG 2026 Chicago">
@@ -43,79 +44,164 @@
 					</div>
 				</section>
 
-				<!-- HADLEY'S VISION -->
+
+
+
 				<section data-background-color="#00223D">
+
 					<h2 style="font-size: 1em; font-style: italic;">"News reports of major local happenings would be matters of history some day and that the proper indexing of such items in time would be valuable"</h2>
-					<p style="font-size: 0.6em; margin-top: 1.5em;">
-						&mdash; Chalmers Hadley, Head Librarian, CHPL (1927)
-					</p>
+<p style="font-size: 0.6em; margin-top: 1.5em;">
+  &mdash; Chalmers Hadley, Head Librarian, CHPL (1927)
+</p>
+
+
+
 					<aside class="notes">
 						Let this quote land. It's a beautiful articulation of the library's mission.
-						The audience should feel the weight of almost a century of continuous,
-						intentional effort by generations of librarians.
+The audience should feel the weight of almost a century of continuous,
+intentional effort by generations of librarians.
+
 					</aside>
+
 				</section>
 
-				<!-- CARD CATALOG ERA -->
+
+
+
 				<section>
+
+
 					<h2>65 Years of Index Cards</h2>
+
+
 					<p style="font-size: 0.7em;">1927 &mdash; 1992</p>
-					<!-- TODO: Add photo of physical card catalog from CHPL blog post -->
+
+
 					<ul>
+
 						<li>Librarians hand-typed index cards for newspaper articles</li>
+
 						<li>Each card: title, newspaper, date, page, column, subject, image indicator</li>
+
 						<li>Arranged by subject in the card catalog</li>
+
 						<li>Coverage: Enquirer, Post, Herald, Cincinnati Magazine, Business Courier, Downtowner</li>
+
 						<li>Selected coverage reaching back to the early 1800s</li>
+
+
+
 					</ul>
+
+
+
+
+
+
+
+
 					<aside class="notes">
 						Emphasize the human element: every card represents a librarian reading an article
-						and deciding it was worth preserving a reference to. The subject assignments are
-						particularly valuable — expert human classification, not automated tagging.
+and deciding it was worth preserving a reference to. The subject assignments are
+particularly valuable — expert human classification, not automated tagging.
+
 					</aside>
+
 				</section>
 
-				<!-- NEWSDEX GOES DIGITAL -->
+
+
+
 				<section>
+
+
 					<h2>Newsdex Goes Digital (1992)</h2>
-					<!-- TODO: Add screenshot of Newsdex search interface -->
+
+
+
 					<ul>
+
 						<li>Card catalog computerized in the early 1990s</li>
+
 						<li>March 1992: newspaper index becomes "Newsdex"</li>
+
 						<li>Provides citations &mdash; not full text</li>
+
 						<li>Staff continue adding entries, including retroactive indexing pre-1900</li>
+
 						<li>No library card required &mdash; genuinely open data</li>
+
+
+
 					</ul>
-					<p style="margin-top: 0.8em;">
+
+
+
+
+
+					<p style="margin-top: 0.8em; font-size: 0.6em;">
 						<a href="https://newsdex.cincinnatilibrary.org/" target="_blank">newsdex.cincinnatilibrary.org</a>
 					</p>
+
+
+
+
 					<aside class="notes">
 						Walk through a search example: "1937 flood" returns a citation — Cincinnati Enquirer,
-						January 26, 1937, page 7, column 2, with a picture. "7:2 pic"
+January 26, 1937, page 7, column 2, with a picture. "7:2 pic"
+
 					</aside>
+
 				</section>
 
-				<!-- THE QUESTION -->
+
+
+
 				<section>
+
+
 					<h2>What If We Could Really Explore It?</h2>
+
+
+
 					<ul>
+
 						<li>"What subjects were most covered in the 1930s vs. the 1960s?"</li>
+
 						<li>"How many obituaries are indexed per decade?"</li>
+
 						<li>"Which newspapers have the most coverage?"</li>
+
 						<li>"Can I browse all articles tagged with 'floods'?"</li>
+
+
+
 					</ul>
-					<p style="margin-top: 0.8em; font-size: 0.7em;">
+
+
+
+
+
+
+					<p style="font-size: 0.7em; margin-top: 1em;">
 						The existing interface serves <strong>known-item search</strong> well.<br>
-						Datasette serves <strong>exploration and discovery</strong>.
+Datasette serves <strong>exploration and discovery</strong>.
+
 					</p>
+
+
+
 				</section>
 
-				<!-- MARC CHALLENGE -->
+
+
+
 				<section>
 					<h2>The Data Format: MARC</h2>
 					<div class="columns" style="font-size: 0.65em;">
 						<div class="col">
 							<h3>MARC Record</h3>
+
 							<pre><code data-trim class="text">
 245 10 $a Relief agencies
        move swiftly
@@ -125,9 +211,11 @@
 650  0 $a Floods
 650  0 $a Emergency management
 							</code></pre>
+
 						</div>
 						<div class="col">
 							<h3>What a human wants</h3>
+
 							<pre><code data-trim class="text">
 Title:     Relief agencies move swiftly
 Newspaper: Cincinnati Enquirer
@@ -137,32 +225,59 @@ Column:    2
 Image:     Yes
 Subjects:  Floods; Emergency mgmt
 							</code></pre>
+
 						</div>
 					</div>
+
 				</section>
 
-				<!-- PIPELINE -->
+
+
+
 				<section>
+
+
 					<h2>The Pipeline</h2>
-					<pre><code data-trim data-noescape class="text" style="font-size: 0.9em;">
+
+
+
+
+
+					<pre><code data-trim class="text">
 MARC Export (.mrc file)
     ↓
 pymarc (Python)
     ↓
-Field Mapping &amp; Cleanup (Jupyter Notebooks)
+Field Mapping & Cleanup (Jupyter Notebooks)
     ↓
 sqlite-utils → SQLite Database
     ↓
 Datasette
 					</code></pre>
-					<p style="font-size: 0.6em;">
+
+
+
+					<p style="margin-top: 0.8em; font-size: 0.6em;">
 						<a href="https://github.com/cincinnatilibrary/newsdex" target="_blank">github.com/cincinnatilibrary/newsdex</a>
 					</p>
+
+
+
+
 				</section>
 
-				<!-- PYMARC CODE -->
+
+
+
 				<section>
+
+
 					<h2>Reading MARC with pymarc</h2>
+
+
+
+
+
 					<pre><code data-trim class="python">
 from pymarc import MARCReader
 
@@ -177,38 +292,138 @@ with open('newsdex-full-marc-export.mrc', 'rb') as fh:
         for field in record.get_fields('650'):
             subjects.append(field['a'])
 					</code></pre>
+
+
+
+
+
+
 					<aside class="notes">
 						Walk through the defensive coding pattern: not every record has every field.
-						The repeatable fields (650 subjects) are particularly interesting — they
-						represent the librarians' classification work across decades.
+The repeatable fields (650 subjects) are particularly interesting — they
+represent the librarians' classification work across decades.
+
 					</aside>
+
 				</section>
 
-				<!-- FIELD MAPPING -->
+
+
+
 				<section>
 					<h2>The Translation Layer</h2>
 					<table style="font-size: 0.55em;">
 						<thead>
-							<tr><th>MARC</th><th>Subfield</th><th>Becomes</th><th>Notes</th></tr>
+							<tr>
+
+								<th>MARC</th>
+
+								<th>Subfield</th>
+
+								<th>Becomes</th>
+
+								<th>Notes</th>
+
+							</tr>
 						</thead>
 						<tbody>
-							<tr><td>245</td><td>$a</td><td><code>title</code></td><td>Article title</td></tr>
-							<tr><td>260</td><td>$b</td><td><code>newspaper</code></td><td>Publication name</td></tr>
-							<tr><td>260</td><td>$c</td><td><code>date</code></td><td>Needs normalization!</td></tr>
-							<tr><td>300</td><td>$a</td><td><code>page</code>, <code>column</code>, <code>has_image</code></td><td>Parse "7:2 pic"</td></tr>
-							<tr><td>650</td><td>$a</td><td><code>subjects</code></td><td>Repeatable (JSON array)</td></tr>
-							<tr><td>008</td><td>pos 7-10</td><td><code>year</code></td><td>For sorting/faceting</td></tr>
+
+							<tr>
+
+								<td>245</td>
+
+								<td>$a</td>
+
+								<td><code>title</code></td>
+
+								<td>Article title</td>
+
+							</tr>
+
+							<tr>
+
+								<td>260</td>
+
+								<td>$b</td>
+
+								<td><code>newspaper</code></td>
+
+								<td>Publication name</td>
+
+							</tr>
+
+							<tr>
+
+								<td>260</td>
+
+								<td>$c</td>
+
+								<td><code>date</code></td>
+
+								<td>Needs normalization!</td>
+
+							</tr>
+
+							<tr>
+
+								<td>300</td>
+
+								<td>$a</td>
+
+								<td><code>page</code>, <code>column</code>, <code>has_image</code></td>
+
+								<td>Parse "7:2 pic"</td>
+
+							</tr>
+
+							<tr>
+
+								<td>650</td>
+
+								<td>$a</td>
+
+								<td><code>subjects</code></td>
+
+								<td>Repeatable (JSON array)</td>
+
+							</tr>
+
+							<tr>
+
+								<td>008</td>
+
+								<td>pos 7-10</td>
+
+								<td><code>year</code></td>
+
+								<td>For sorting/faceting</td>
+
+							</tr>
+
 						</tbody>
 					</table>
+
 					<p style="font-size: 0.6em; margin-top: 0.8em;">
-						This mapping requires understanding of <em>both</em> the MARC standard<br>
-						<em>and</em> decades of Newsdex cataloging conventions.
+						This mapping requires understanding of <em>both</em> the MARC standard
+<em>and</em> decades of Newsdex cataloging conventions.
+
 					</p>
+
+
 				</section>
 
-				<!-- SQLITE -->
+
+
+
 				<section>
+
+
 					<h2>Into SQLite with sqlite-utils</h2>
+
+
+
+
+
 					<pre><code data-trim class="python">
 import sqlite_utils
 
@@ -224,83 +439,179 @@ db["articles"].enable_fts(["title", "subjects", "notes"])
 db["articles"].create_index(["newspaper"])
 db["articles"].create_index(["year"])
 					</code></pre>
+
+
+
+
+
+
 				</section>
 
-				<!-- DEMO -->
+
+
+
 				<section data-background="white">
 					<h2>A Century of Cincinnati News, Explorable</h2>
-					<!-- TODO: Replace with live Datasette instance or screenshots -->
 					<iframe src="https://newsdex.cincinnatilibrary.org/"
 						style="width: 100%; height: 550px; border: 2px solid #E8E8E8; border-radius: 8px;">
 					</iframe>
+
 					<aside class="notes">
 						Demo flow: Show total record count → Full-text search "1937 flood" →
-						Facet by newspaper → Facet by year/decade → Search for obituaries →
-						Compare with traditional Newsdex interface
+Facet by newspaper → Facet by year/decade → Search for obituaries →
+Compare with traditional Newsdex interface
+
 					</aside>
+
 				</section>
 
-				<!-- CHPL BLOG POST -->
+
+
+
 				<section>
+
+
 					<h2>Sharing the Story</h2>
-					<!-- TODO: Add screenshot of blog post -->
+
+
+
 					<ul>
+
 						<li>CHPL blog post tells the full Newsdex history</li>
+
 						<li>Includes Hadley portrait, card catalog photos, video tutorial</li>
+
 						<li>A model for communicating technical/data work to the public</li>
+
 						<li>"A library card with us is not necessary to use Newsdex"</li>
+
+
+
 					</ul>
-					<p style="margin-top: 0.8em;">
+
+
+
+
+
+					<p style="margin-top: 0.8em; font-size: 0.6em;">
 						<a href="https://chpl.org/blogs/post/newsdex-upgrade/" target="_blank">chpl.org/blogs/post/newsdex-upgrade</a>
 					</p>
+
+
+
+
 				</section>
 
-				<!-- LESSONS LEARNED -->
+
+
+
 				<section>
+
+
 					<h2>Lessons Learned</h2>
+
+
+
+
 					<ol>
+
 						<li><strong>Domain expertise is irreplaceable</strong><br>
-							<span style="font-size: 0.7em;">Developers + librarians together &gt; either alone</span></li>
+							<span style="font-size: 0.7em;">Developers + librarians together > either alone</span></li>
+
 						<li><strong>"Good enough" ships; "perfect" doesn't</strong><br>
 							<span style="font-size: 0.7em;">Get the data out there and iterate</span></li>
+
 						<li><strong>The presentation layer matters</strong><br>
 							<span style="font-size: 0.7em;">Same data in MARC vs. Datasette tells completely different stories</span></li>
+
 						<li><strong>Historical data has compounding value</strong><br>
 							<span style="font-size: 0.7em;">Every year, the older entries become more valuable</span></li>
+
 					</ol>
+
+
+
+
+
+
+
 				</section>
 
-				<!-- BIG PICTURE -->
+
+
+
 				<section>
+
+
 					<h2>The Pattern: Data Liberation</h2>
-					<pre><code data-trim data-noescape class="text" style="font-size: 0.85em;">
+
+
+
+
+
+					<pre><code data-trim class="text">
 Sierra ILS (Collection Snapshots) ──┐
                                     ├──→ Datasette ──→ Everyone
 MARC Export (Newsdex)          ─────┘     $5/mo
                                         Open source
 					</code></pre>
+
+
+
+
 					<p style="font-size: 0.7em; margin-top: 1em;">
 						If you can get your data into SQLite,<br>
-						Datasette can make it explorable.
+Datasette can make it explorable.
+
 					</p>
+
+
+
 				</section>
 
-				<!-- RESOURCES -->
+
+
+
 				<section>
+
+
 					<h2>Resources</h2>
-					<ul style="font-size: 0.65em;">
-						<li><a href="https://newsdex.cincinnatilibrary.org/">newsdex.cincinnatilibrary.org</a> &mdash; Newsdex (live search)</li>
-						<li><a href="https://chpl.org/blogs/post/newsdex-upgrade/">chpl.org/blogs/post/newsdex-upgrade</a> &mdash; CHPL Blog: Newsdex History</li>
-						<li><a href="https://github.com/cincinnatilibrary/newsdex">github.com/cincinnatilibrary/newsdex</a> &mdash; Newsdex Repo (MARC + notebooks)</li>
-						<li><a href="https://collection-analysis.cincy.pl/">collection-analysis.cincy.pl</a> &mdash; Collection Analysis (live)</li>
-						<li><a href="https://datasette.io/">datasette.io</a> &mdash; Datasette</li>
-						<li><a href="https://sqlite-utils.datasette.io/">sqlite-utils.datasette.io</a> &mdash; sqlite-utils</li>
-						<li><a href="https://pypi.org/project/pymarc/">pypi.org/project/pymarc</a> &mdash; pymarc</li>
-						<li><a href="https://github.com/cincinnatilibrary">github.com/cincinnatilibrary</a> &mdash; CHPL GitHub</li>
+
+
+
+
+
+
+					<ul style="font-size: 0.7em;">
+
+						<li><a href="https://newsdex.cincinnatilibrary.org/">newsdex.cincinnatilibrary.org &mdash; Newsdex (live search)</a></li>
+
+						<li><a href="https://chpl.org/blogs/post/newsdex-upgrade/">chpl.org/blogs/post/newsdex-upgrade &mdash; CHPL Blog: Newsdex History</a></li>
+
+						<li><a href="https://github.com/cincinnatilibrary/newsdex">github.com/cincinnatilibrary/newsdex &mdash; Newsdex Repo (MARC + notebooks)</a></li>
+
+						<li><a href="https://collection-analysis.cincy.pl/">collection-analysis.cincy.pl &mdash; Collection Analysis (live)</a></li>
+
+						<li><a href="https://datasette.io/">datasette.io &mdash; Datasette</a></li>
+
+						<li><a href="https://sqlite-utils.datasette.io/">sqlite-utils.datasette.io &mdash; sqlite-utils</a></li>
+
+						<li><a href="https://pypi.org/project/pymarc/">pypi.org/project/pymarc &mdash; pymarc</a></li>
+
+						<li><a href="https://github.com/cincinnatilibrary">github.com/cincinnatilibrary &mdash; CHPL GitHub</a></li>
+
 					</ul>
+
+
+
+
+
 				</section>
 
-				<!-- THANK YOU — split layout like title slide -->
+
+
+
+				<!-- CLOSING SLIDE -->
 				<section class="title-slide" data-background-color="#F3E4C5" data-state="no-footer">
 					<div class="title-logo-panel">
 						<img src="assets/iug2026-logo.jpg" alt="IUG 2026 Chicago">
@@ -309,7 +620,8 @@ MARC Export (Newsdex)          ─────┘     $5/mo
 						<h1 style="font-size: 1.4em;">Thank You!</h1>
 						<p style="font-size: 0.65em; margin-bottom: 1em;">
 							Thank you to the Genealogy &amp; Local History Department &mdash;
-							they created this data over nearly 100 years.
+they created this data over nearly 100 years.
+
 						</p>
 						<p>
 							Ray Voelker<br>
@@ -319,6 +631,8 @@ MARC Export (Newsdex)          ─────┘     $5/mo
 						</p>
 					</div>
 				</section>
+
+
 
 			</div>
 		</div>
@@ -343,7 +657,6 @@ MARC Export (Newsdex)          ─────┘     $5/mo
 				                  slide.dataset.backgroundColor === '#0E2841';
 				footer.style.display = (isTitle || hasDarkBg) ? 'none' : 'flex';
 			});
-			// Also run on load for first slide
 			Reveal.on('ready', event => {
 				const footer = document.querySelector('.footer-bar');
 				const slide = event.currentSlide;
