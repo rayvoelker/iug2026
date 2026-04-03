@@ -20,18 +20,29 @@
 	</head>
 	<body>
 		<div class="reveal">
+			<!-- Persistent footer bar matching template (beige bar + logo) -->
+			<div class="footer-bar">
+				<img src="assets/iug2026-logo.jpg" alt="IUG 2026 Chicago">
+			</div>
+
 			<div class="slides">
 
-				<!-- TITLE SLIDE -->
-				<section data-background="white">
-					<img src="assets/iug2026-logo.jpg" style="height: 150px; margin: 0 auto; background: transparent;">
-					<h1 style="font-size: 1.6em;">I &#10084;&#65039; Datasette</h1>
-					<h2 style="font-size: 0.8em; color: #156082; font-weight: 400;">From ILS Snapshots to a $5/Month Analysis Platform</h2>
-					<p style="font-size: 0.5em; margin-top: 1em;">
-						Ray Voelker<br>
-						Cincinnati &amp; Hamilton County Public Library<br>
-						<a href="mailto:ray.voelker@cincinnatilibrary.org">ray.voelker@cincinnatilibrary.org</a>
-					</p>
+				<!-- TITLE SLIDE — split layout matching IUG template -->
+				<section class="title-slide" data-background="white" data-state="no-footer">
+					<div class="title-layout">
+						<div class="title-left">
+							<img src="assets/iug2026-logo.jpg" alt="IUG 2026 Chicago">
+						</div>
+						<div class="title-right">
+							<h1>I &#10084;&#65039; Datasette</h1>
+							<h2>From ILS Snapshots to a $5/Month Analysis Platform</h2>
+							<p>
+								Ray Voelker<br>
+								Cincinnati &amp; Hamilton County Public Library<br>
+								<a href="mailto:ray.voelker@cincinnatilibrary.org">ray.voelker@cincinnatilibrary.org</a>
+							</p>
+						</div>
+					</div>
 				</section>
 
 				<!-- THE PROBLEM -->
@@ -105,7 +116,7 @@
 				</section>
 
 				<!-- CHPL CONTEXT -->
-				<section data-background-color="#0E2841">
+				<section data-background-color="#00223D">
 					<h2>Cincinnati &amp; Hamilton County Public Library</h2>
 					<ul>
 						<li>~9.6 million volumes (2nd largest public library collection)</li>
@@ -269,19 +280,27 @@ datasette my-data.db
 					</ul>
 				</section>
 
-				<!-- THANK YOU -->
-				<section data-background="white">
-					<img src="assets/iug2026-logo.jpg" style="height: 120px; margin: 0 auto; background: transparent;">
-					<h2>Thanks!</h2>
-					<p>Please let me know if you come up with any cool queries,
-						&#10084;&#65039; Datasette as much as I do,
-						or want to use this at your library!</p>
-					<p style="font-size: 0.6em; margin-top: 1em;">
-						Ray Voelker<br>
-						<a href="mailto:ray.voelker@gmail.com">ray.voelker@gmail.com</a> |
-						<a href="mailto:ray.voelker@cincinnatilibrary.org">ray.voelker@cincinnatilibrary.org</a><br>
-						<a href="https://github.com/rayvoelker">github.com/rayvoelker</a>
-					</p>
+				<!-- THANK YOU — split layout like title slide -->
+				<section class="title-slide" data-background="white" data-state="no-footer">
+					<div class="title-layout">
+						<div class="title-left">
+							<img src="assets/iug2026-logo.jpg" alt="IUG 2026 Chicago">
+						</div>
+						<div class="title-right">
+							<h1 style="font-size: 1.4em;">Thanks!</h1>
+							<p style="font-size: 0.65em; margin-bottom: 1em;">
+								Please let me know if you come up with any cool queries,
+								&#10084;&#65039; Datasette as much as I do,
+								or want to use this at your library!
+							</p>
+							<p>
+								Ray Voelker<br>
+								<a href="mailto:ray.voelker@gmail.com">ray.voelker@gmail.com</a> |
+								<a href="mailto:ray.voelker@cincinnatilibrary.org">ray.voelker@cincinnatilibrary.org</a><br>
+								<a href="https://github.com/rayvoelker">github.com/rayvoelker</a>
+							</p>
+						</div>
+					</div>
 				</section>
 
 			</div>
@@ -296,6 +315,23 @@ datasette my-data.db
 				hash: true,
 				slideNumber: true,
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+
+			// Hide footer bar on title slides and dark background slides
+			Reveal.on('slidechanged', event => {
+				const footer = document.querySelector('.footer-bar');
+				const slide = event.currentSlide;
+				const isTitle = slide.classList.contains('title-slide');
+				const hasDarkBg = slide.dataset.backgroundColor === '#00223D' ||
+				                  slide.dataset.backgroundColor === '#0E2841';
+				footer.style.display = (isTitle || hasDarkBg) ? 'none' : 'flex';
+			});
+			// Also run on load for first slide
+			Reveal.on('ready', event => {
+				const footer = document.querySelector('.footer-bar');
+				const slide = event.currentSlide;
+				const isTitle = slide.classList.contains('title-slide');
+				footer.style.display = isTitle ? 'none' : 'flex';
 			});
 		</script>
 	</body>

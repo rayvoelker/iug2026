@@ -1,16 +1,19 @@
 /*
  * IUG 2026 Custom Theme for Reveal.js
- * Based on colors extracted from the official IUG 2026 PPT template
+ * Matches the official IUG 2026 PowerPoint template design:
+ *   - Title slide: split layout (white left / beige right) with logo
+ *   - Content slides: white body with beige footer bar + small logo
  *
- * Color Palette:
- *   Dark Navy:    #0E2841 (headers, dark backgrounds)
+ * Color Palette (from template):
+ *   Dark Navy:    #00223D (headings, text -- from template, slightly different from Office #0E2841)
+ *   Charcoal:     #53575A (body text)
  *   Blue:         #156082 (primary accent)
  *   Light Blue:   #0F9ED5 (links, highlights)
  *   Orange:       #E97132 (accent, emphasis)
  *   Teal:         #467886 (hyperlinks)
+ *   Beige:        #F3E4C5 (footer bar, title slide background)
  *   Light Gray:   #E8E8E8 (subtle backgrounds)
- *   White:        #FFFFFF (backgrounds)
- *   Black:        #000000 (body text)
+ *   White:        #FFFFFF (slide backgrounds)
  */
 
 /* -- Base overrides on top of white.css -- */
@@ -18,7 +21,7 @@
 .reveal {
   font-family: 'Aptos', 'Inter', 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 42px;
-  color: #000000;
+  color: #53575A;
 }
 
 .reveal h1,
@@ -28,7 +31,7 @@
 .reveal h5,
 .reveal h6 {
   font-family: 'Aptos Display', 'Inter', 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #0E2841;
+  color: #00223D;
   font-weight: 700;
   text-transform: none;
   letter-spacing: normal;
@@ -59,10 +62,116 @@
 }
 
 .reveal .navy {
-  color: #0E2841;
+  color: #00223D;
 }
 
-/* Slide backgrounds */
+/* =============================================
+   TITLE SLIDE — split layout matching template
+   Left: white panel with logo
+   Right: beige panel with title + subtitle
+   ============================================= */
+
+.reveal .title-slide {
+  text-align: left;
+}
+
+.reveal .title-slide .title-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.reveal .title-slide .title-left {
+  flex: 0 0 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: #FFFFFF;
+  padding: 2em;
+  box-sizing: border-box;
+}
+
+.reveal .title-slide .title-left img {
+  max-width: 85%;
+  max-height: 70%;
+}
+
+.reveal .title-slide .title-right {
+  flex: 0 0 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  background: #F3E4C5;
+  padding: 2em 3em;
+  box-sizing: border-box;
+}
+
+.reveal .title-slide .title-right h1 {
+  font-size: 1.6em;
+  color: #00223D;
+  margin-bottom: 0.2em;
+  line-height: 1.2;
+}
+
+.reveal .title-slide .title-right h2 {
+  font-size: 0.75em;
+  color: #00223D;
+  font-weight: 400;
+  margin-bottom: 0.8em;
+  opacity: 0.8;
+}
+
+.reveal .title-slide .title-right p {
+  font-size: 0.55em;
+  color: #53575A;
+}
+
+/* =============================================
+   CONTENT SLIDES — beige footer bar with logo
+   ============================================= */
+
+/* Persistent footer bar on all non-title slides */
+.reveal .footer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #F3E4C5;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+.reveal .footer-bar img {
+  height: 50px;
+  width: auto;
+}
+
+/* Ensure slide content doesn't overlap the footer */
+.reveal .slides section {
+  padding-bottom: 80px;
+}
+
+/* Dark background slides (navy) */
+.reveal section[data-background-color="#00223D"] h1,
+.reveal section[data-background-color="#00223D"] h2,
+.reveal section[data-background-color="#00223D"] h3,
+.reveal section[data-background-color="#00223D"] p,
+.reveal section[data-background-color="#00223D"] li,
 .reveal section[data-background-color="#0E2841"] h1,
 .reveal section[data-background-color="#0E2841"] h2,
 .reveal section[data-background-color="#0E2841"] h3,
@@ -71,6 +180,7 @@
   color: #FFFFFF;
 }
 
+.reveal section[data-background-color="#00223D"] a,
 .reveal section[data-background-color="#0E2841"] a {
   color: #0F9ED5;
 }
@@ -113,27 +223,6 @@
   box-shadow: none;
 }
 
-/* Footer bar for branding */
-.reveal .slide-footer {
-  position: absolute;
-  bottom: 10px;
-  left: 20px;
-  font-size: 0.4em;
-  color: #467886;
-}
-
-/* Title slide styling */
-.reveal .title-slide h1 {
-  font-size: 2em;
-  color: #0E2841;
-}
-
-.reveal .title-slide h2 {
-  font-size: 1em;
-  color: #156082;
-  font-weight: 400;
-}
-
 /* Two-column layout helper */
 .reveal .columns {
   display: flex;
@@ -149,4 +238,25 @@
   border: 2px solid #E8E8E8;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Tables */
+.reveal table {
+  border-collapse: collapse;
+}
+
+.reveal table th {
+  background: #00223D;
+  color: #FFFFFF;
+  padding: 0.4em 0.6em;
+  font-weight: 600;
+}
+
+.reveal table td {
+  border-bottom: 1px solid #E8E8E8;
+  padding: 0.3em 0.6em;
+}
+
+.reveal table tr:nth-child(even) td {
+  background: #f9f7f3;
 }
