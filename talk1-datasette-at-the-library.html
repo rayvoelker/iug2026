@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<meta name="description" content="I Love Datasette: From ILS Snapshots to a $5/Month Analysis Platform - IUG 2026">
+		<meta name="keywords" content="Ray Voelker, Cincinnati & Hamilton County Public Library, IUG, IUG 2026, Datasette, Python, SQLite, SQL, Collection Analysis">
+		<meta name="author" content="Ray Voelker">
+
+		<title>I &#10084;&#65039; Datasette - IUG 2026 - Ray Voelker</title>
+
+		<link rel="stylesheet" href="reset.css">
+		<link rel="stylesheet" href="reveal.css">
+		<link rel="stylesheet" href="theme/white.css" id="theme">
+		<link rel="stylesheet" href="css/iug2026.css">
+
+		<!-- Syntax highlighting -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<!-- Logo panel for title/closing slides — OUTSIDE .reveal so CSS transforms don't affect it -->
+		<div class="title-logo-panel" style="display: none;">
+			<img src="assets/iug2026-logo.jpg" alt="IUG 2026 Chicago">
+		</div>
+
+		<div class="reveal">
+			<!-- Persistent footer bar matching template (beige bar + logo) -->
+			<div class="footer-bar">
+				<img src="assets/iug2026-logo.jpg" alt="IUG 2026 Chicago">
+			</div>
+
+			<div class="slides">
+
+
+				<!-- TITLE SLIDE -->
+				<section class="title-slide" data-background-color="#F3E4C5" data-state="no-footer">
+					<div class="title-content">
+						<h1>I &#10084;&#65039; Datasette</h1>
+						<h2>From ILS Snapshots to a $5/Month Analysis Platform</h2>
+						<p>
+							Ray Voelker<br>
+							Cincinnati &amp; Hamilton County Public Library<br>
+							<a href="mailto:ray.voelker@chpl.org">ray.voelker@chpl.org</a>
+						</p>
+					</div>
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>Your Data Is Trapped</h2>
+
+
+
+					<ul>
+
+						<li>Libraries sit on TONS of structured data</li>
+
+						<li>ILS systems weren't designed for flexible, ad-hoc analysis</li>
+
+						<li>The people who know the collection best often have the <em>least</em> direct access to the data</li>
+
+
+
+					</ul>
+
+
+
+
+
+
+
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>So What Do People Do?</h2>
+
+
+
+					<ul>
+
+						<li>Wrestling with complicated ETL pipelines</li>
+
+						<li>Rely on one or two staff to produce reports</li>
+
+						<li>Scrape the Public WebPAC <em>(this is especially bad)</em></li>
+
+
+
+					</ul>
+
+
+
+
+
+
+
+
+					<aside class="notes">
+						Riley Walz's "Library Spy" (walzr.com/library-spy) scrapes NYPL
+availability to show real-time checkouts. It went viral.
+If you don't publish your data, people scrape your WebPAC.
+Datasette gives you a proper API instead.
+
+					</aside>
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>What If You Could Just... Explore It?</h2>
+
+
+
+					<ul>
+
+						<li>Browse the entire collection in a web browser</li>
+
+						<li>Filter by location, format, status, date &mdash; instantly</li>
+
+						<li>Run pre-built queries without writing SQL</li>
+
+						<li>Export results to CSV</li>
+
+						<li>Access a JSON API for advanced use</li>
+
+
+
+					</ul>
+
+
+
+
+
+					<p style="margin-top: 0.8em; font-size: 0.6em;">
+						<a href="https://collection-analysis.cincy.pl/" target="_blank">collection-analysis.cincy.pl</a>
+					</p>
+
+
+
+
+					<aside class="notes">
+						"That's exactly what we built — and it costs $5/month to run."
+
+					</aside>
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>What is Datasette?</h2>
+
+
+
+					<ul>
+
+						<li>Created by Simon Willison (co-creator of Django)</li>
+
+						<li>"A tool for exploring and publishing data"</li>
+
+						<li>Aimed at <span class="accent">journalists</span>, <span class="accent">museum curators</span>, <span class="accent">archivists</span>, <span class="accent">local governments</span>, and <span class="accent">anyone else who has data</span></li>
+
+						<li>Read-only by default &mdash; safe to hand to anyone</li>
+
+
+
+					</ul>
+
+
+
+
+
+					<p style="margin-top: 0.8em; font-size: 0.6em;">
+						<a href="https://datasette.io/" target="_blank">datasette.io</a>
+					</p>
+
+
+
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>Things I &#10084;&#65039; about Datasette</h2>
+
+
+
+					<ul>
+
+						<li>Written in Python / Available via pip</li>
+
+						<li>Easy and intuitive to use</li>
+
+						<li>Well-documented</li>
+
+						<li>Useful, large, and growing plugin library</li>
+
+						<li>Built-in API... Using SQL!</li>
+
+						<li>Open source + supportive developer</li>
+
+						<li>Flexible deployment with <span class="accent">CHEAP</span> hosting options</li>
+
+
+
+					</ul>
+
+
+
+
+
+
+
+
+				</section>
+
+
+
+
+				<section data-background-color="#00223D">
+
+
+					<h2>Cincinnati &amp; Hamilton County Public Library</h2>
+
+
+
+					<ul>
+
+						<li>~9.6 million volumes (2nd largest public library collection)</li>
+
+						<li>41 locations across Hamilton County</li>
+
+						<li>21+ million items circulated annually</li>
+
+						<li>Main Library: 4M+ items/year (most of any single US location)</li>
+
+						<li>Runs the Sierra ILS</li>
+
+
+
+					</ul>
+
+
+
+
+
+
+
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>The Pipeline</h2>
+
+
+
+
+
+					<pre><code data-trim class="text">
+Sierra ILS
+    ↓
+PostgreSQL (Sierra DB)
+    ↓
+Python Scripts (sqlite-utils)
+    ↓
+SQLite Database
+    ↓
+Datasette → collection-analysis.cincy.pl
+					</code></pre>
+
+
+
+					<p style="margin-top: 0.8em; font-size: 0.6em;">
+						<a href="https://github.com/cincinnatilibrary/collection-analysis" target="_blank">github.com/cincinnatilibrary/collection-analysis</a>
+					</p>
+
+
+
+
+				</section>
+
+
+
+
+				<section data-background="white">
+					<h2>Demo Time!</h2>
+					<iframe src="https://collection-analysis.cincy.pl/"
+						style="width: 100%; height: 550px; border: 2px solid #E8E8E8; border-radius: 8px;">
+					</iframe>
+
+					<aside class="notes">
+						Demo flow: Browse item table → Facet by location → Facet by format →
+Filter to single branch → Custom SQL query → CSV export → JSON API
+
+					</aside>
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>Hosting: $5 a Month. Seriously.</h2>
+
+
+
+					<ul>
+
+						<li>DigitalOcean Droplet: <span class="accent">$5/month</span></li>
+
+
+						<ul>
+
+							<li>1 vCPU, 1 GB RAM, 25 GB SSD</li>
+
+						</ul>
+
+
+
+						<li>Apache reverse proxy (free)</li>
+
+						<li>Let's Encrypt TLS (free)</li>
+
+						<li>Datasette + Python (free, open source)</li>
+
+
+					</ul>
+
+
+
+
+
+					<p style="margin-top: 0.8em; font-size: 0.6em;">
+						<a href="https://ils-underground.github.io/python_datasette_vps.html" target="_blank">Step-by-step guide: ils-underground.github.io</a>
+					</p>
+
+
+
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>Pre-Built Queries for Domain Experts</h2>
+
+
+
+					<ul>
+
+						<li>Not everyone wants (or needs) to write SQL</li>
+
+						<li>Datasette supports "canned queries" with parameter inputs</li>
+
+						<li>Examples:</li>
+
+
+						<ul>
+
+							<li>"Items at [branch] not checked out since [date]"</li>
+
+							<li>"Top circulating titles by [format]"</li>
+
+							<li>"Collection age distribution for [branch]"</li>
+
+						</ul>
+
+
+
+						<li>Domain experts get answers; developers maintain the queries</li>
+
+
+					</ul>
+
+
+
+
+
+
+
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>SQL Example: Location Analysis</h2>
+
+
+
+
+
+					<pre><code data-trim class="sql">
+select
+  item.location_code,
+  l.location_name,
+  l.branch_name,
+  count(*) as count_items
+from
+  item
+  join location_view as l
+    on l.location_code = item.location_code
+where branch_name = :branch_name
+group by 1, 2, 3
+					</code></pre>
+
+
+
+
+
+
+					<aside class="notes">
+						Named parameters like :branch_name give users a nice input form
+in Datasette without writing SQL.
+
+					</aside>
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>What's New in Datasette (2025-2026)</h2>
+
+
+
+					<ul>
+
+						<li>Datasette 1.0 alpha series</li>
+
+						<li><strong>datasette-plot</strong> &mdash; new visualization plugin</li>
+
+						<li><strong>datasette-extract</strong> &mdash; LLM-powered data extraction</li>
+
+						<li><strong>Datasette Lite</strong> &mdash; runs entirely in the browser (WebAssembly)</li>
+
+						<li>Simon Willison's NICAR 2026 workshop: coding agents + Datasette</li>
+
+
+
+					</ul>
+
+
+
+
+
+
+
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>Once You Have the Pattern, Everything Is a Dataset</h2>
+
+
+
+					<ul>
+
+						<li>ILS collection data &#10003;</li>
+
+						<li>Newspaper indexes (Newsdex) &mdash; <em>up next!</em></li>
+
+						<li>Program attendance</li>
+
+						<li>Website analytics</li>
+
+						<li>Vendor usage statistics</li>
+
+						<li>Budget/purchasing data</li>
+
+
+
+					</ul>
+
+
+
+
+
+
+
+
+					<aside class="notes">
+						Tease Talk 2: "We also used this to liberate a century of Cincinnati
+newspaper index data — that's the Newsdex project."
+
+					</aside>
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>Try It Yourself &mdash; 5 Minutes</h2>
+
+
+
+
+
+					<pre><code data-trim class="bash">
+# Install
+pip install datasette sqlite-utils
+
+# Got a CSV? Make it a database.
+sqlite-utils insert my-data.db my_table my-data.csv --csv
+
+# Enable full-text search
+sqlite-utils enable-fts my-data.db my_table title description
+
+# Launch
+datasette my-data.db
+# → http://localhost:8001/
+					</code></pre>
+
+
+
+					<p style="margin-top: 0.8em; font-size: 0.6em;">
+						<a href="https://lite.datasette.io/" target="_blank">Or try Datasette Lite &mdash; no install needed!</a>
+					</p>
+
+
+
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>Resources</h2>
+
+
+
+
+
+
+					<ul style="font-size: 0.7em;">
+
+						<li><a href="https://datasette.io/">datasette.io &mdash; Datasette</a></li>
+
+						<li><a href="https://sqlite-utils.datasette.io/">sqlite-utils.datasette.io &mdash; sqlite-utils</a></li>
+
+						<li><a href="https://collection-analysis.cincy.pl/">collection-analysis.cincy.pl &mdash; CHPL Collection Analysis (live)</a></li>
+
+						<li><a href="https://github.com/cincinnatilibrary/collection-analysis">github.com/cincinnatilibrary/collection-analysis &mdash; Source Code</a></li>
+
+						<li><a href="https://ils-underground.github.io/python_datasette_vps.html">ils-underground.github.io &mdash; VPS Hosting Guide</a></li>
+
+						<li><a href="https://datasette.io/tutorials">datasette.io/tutorials &mdash; Tutorials</a></li>
+
+						<li><a href="https://simonwillison.net/">simonwillison.net &mdash; Simon Willison's Blog</a></li>
+
+					</ul>
+
+
+
+
+
+				</section>
+
+
+
+
+				<!-- CLOSING SLIDE -->
+				<section class="title-slide" data-background-color="#F3E4C5" data-state="no-footer">
+					<div class="title-content">
+						<h1 style="font-size: 1.4em;">Thanks!</h1>
+						<p style="font-size: 0.65em; margin-bottom: 1em;">
+							Please let me know if you come up with any cool queries,
+&#10084;&#65039; Datasette as much as I do,
+or want to use this at your library!
+
+						</p>
+						<p>
+							Ray Voelker<br>
+							<a href="mailto:ray.voelker@gmail.com">ray.voelker@gmail.com</a> |
+							<a href="mailto:ray.voelker@chpl.org">ray.voelker@chpl.org</a><br>
+							<a href="https://github.com/rayvoelker">github.com/rayvoelker</a>
+						</p>
+					</div>
+				</section>
+
+
+
+			</div>
+		</div>
+
+		<script src="reveal.js"></script>
+		<script src="plugin/notes.js"></script>
+		<script src="plugin/markdown.js"></script>
+		<script src="plugin/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				slideNumber: true,
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+
+			// Toggle footer bar and logo panel based on slide type
+			function updateChrome(slide) {
+				const footer = document.querySelector('.footer-bar');
+				const logoPanel = document.querySelector('.title-logo-panel');
+				const isTitle = slide.classList.contains('title-slide');
+				const hasDarkBg = slide.dataset.backgroundColor === '#00223D' ||
+				                  slide.dataset.backgroundColor === '#0E2841';
+				footer.style.display = (isTitle || hasDarkBg) ? 'none' : 'flex';
+				logoPanel.style.display = isTitle ? 'flex' : 'none';
+			}
+			Reveal.on('slidechanged', event => updateChrome(event.currentSlide));
+			Reveal.on('ready', event => updateChrome(event.currentSlide));
+		</script>
+	</body>
+</html>
