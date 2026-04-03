@@ -2,13 +2,30 @@
 title: "IUG 2026 Presentation Planning"
 author: Ray Voelker
 conference: IUG 2026
+conference_dates: April 13-15, 2026 (Pre-conference April 12)
+conference_location: Chicago, IL
 presentations: 2
 target_length: "~15 minutes each"
+template: IUG_2026_PPT_template.potx
 status: planning
 last_updated: 2026-04-03
 ---
 
 # IUG 2026 Presentation Planning
+
+## Conference Details
+
+- **Dates:** April 13-15, 2026 (Pre-conference: Sunday, April 12)
+- **Location:** Chicago, IL
+- **Official template:** `IUG_2026_PPT_template.potx` (downloaded, in repo root)
+  - Must include title slide with IUG conference logo
+- **Presenter guidelines:** https://www.innovativeusers.org/conference_presenters_guideli.php
+  - Presentations must be in English
+  - Must fit within allotted time
+  - Live demos encouraged, but prepare screen captures as backup
+  - Minimum 24pt font
+  - Use a title/introductory slide
+  - Test equipment beforehand
 
 ## Overview
 
@@ -351,7 +368,7 @@ where
 
 ## Open Questions / Decisions Needed
 
-- [ ] Presentation framework: Reveal.js again? Or try something new?
+- [ ] Presentation framework: Reveal.js again? PowerPoint (IUG template provided)? Both?
 - [ ] Live demo vs. screenshots? (WiFi reliability at venue)
 - [ ] How much overlap between Talk 1 and Talk 2? (If audience attends both)
 - [ ] Should Talk 2 include a live Datasette instance with actual Newsdex data?
