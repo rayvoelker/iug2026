@@ -1,0 +1,152 @@
+/*
+ * IUG 2026 Custom Theme for Reveal.js
+ * Based on colors extracted from the official IUG 2026 PPT template
+ *
+ * Color Palette:
+ *   Dark Navy:    #0E2841 (headers, dark backgrounds)
+ *   Blue:         #156082 (primary accent)
+ *   Light Blue:   #0F9ED5 (links, highlights)
+ *   Orange:       #E97132 (accent, emphasis)
+ *   Teal:         #467886 (hyperlinks)
+ *   Light Gray:   #E8E8E8 (subtle backgrounds)
+ *   White:        #FFFFFF (backgrounds)
+ *   Black:        #000000 (body text)
+ */
+
+/* -- Base overrides on top of white.css -- */
+
+.reveal {
+  font-family: 'Aptos', 'Inter', 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 42px;
+  color: #000000;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: 'Aptos Display', 'Inter', 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #0E2841;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.reveal h1 { font-size: 1.8em; }
+.reveal h2 { font-size: 1.4em; }
+.reveal h3 { font-size: 1.1em; }
+
+.reveal a {
+  color: #467886;
+  text-decoration: none;
+}
+
+.reveal a:hover {
+  color: #0F9ED5;
+  text-decoration: underline;
+}
+
+/* Accent class for emphasis text */
+.reveal .accent {
+  color: #E97132;
+  font-weight: 700;
+}
+
+.reveal .blue {
+  color: #156082;
+}
+
+.reveal .navy {
+  color: #0E2841;
+}
+
+/* Slide backgrounds */
+.reveal section[data-background-color="#0E2841"] h1,
+.reveal section[data-background-color="#0E2841"] h2,
+.reveal section[data-background-color="#0E2841"] h3,
+.reveal section[data-background-color="#0E2841"] p,
+.reveal section[data-background-color="#0E2841"] li {
+  color: #FFFFFF;
+}
+
+.reveal section[data-background-color="#0E2841"] a {
+  color: #0F9ED5;
+}
+
+/* Lists */
+.reveal ul,
+.reveal ol {
+  text-align: left;
+  margin-left: 1em;
+}
+
+.reveal li {
+  margin-bottom: 0.4em;
+  font-size: 0.85em;
+}
+
+/* Code blocks */
+.reveal pre {
+  font-size: 0.55em;
+  box-shadow: none;
+  border: 1px solid #E8E8E8;
+  border-radius: 4px;
+}
+
+.reveal code {
+  font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
+}
+
+.reveal p code,
+.reveal li code {
+  background: #E8E8E8;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* Images */
+.reveal img {
+  border: none;
+  box-shadow: none;
+}
+
+/* Footer bar for branding */
+.reveal .slide-footer {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  font-size: 0.4em;
+  color: #467886;
+}
+
+/* Title slide styling */
+.reveal .title-slide h1 {
+  font-size: 2em;
+  color: #0E2841;
+}
+
+.reveal .title-slide h2 {
+  font-size: 1em;
+  color: #156082;
+  font-weight: 400;
+}
+
+/* Two-column layout helper */
+.reveal .columns {
+  display: flex;
+  gap: 2em;
+}
+
+.reveal .columns .col {
+  flex: 1;
+}
+
+/* Screenshot styling */
+.reveal .screenshot {
+  border: 2px solid #E8E8E8;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
