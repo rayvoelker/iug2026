@@ -67,73 +67,66 @@
 
 /* =============================================
    TITLE SLIDE — split layout matching template
-   Left: white panel with logo
-   Right: beige panel with title + subtitle
+   Left: white panel with logo (overlay)
+   Right: beige background (via data-background)
+
+   The beige fills the whole slide via Reveal's
+   background system. The white logo panel is an
+   overlay positioned on the left.
    ============================================= */
 
 .reveal .title-slide {
   text-align: left;
+  padding: 0 !important;
 }
 
-.reveal .title-slide .title-layout {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
+/* White panel overlay on the left side — uses negative margins
+   to break out of Reveal's slide padding and cover full height */
+.reveal .title-slide .title-logo-panel {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.reveal .title-slide .title-left {
-  flex: 0 0 35%;
+  top: -50%;
+  left: -10%;
+  width: 38%;
+  height: 200%;
+  background: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  background: #FFFFFF;
-  padding: 2em;
-  box-sizing: border-box;
+  z-index: 1;
 }
 
-.reveal .title-slide .title-left img {
-  max-width: 85%;
-  max-height: 70%;
+.reveal .title-slide .title-logo-panel img {
+  width: 65%;
+  max-width: 260px;
 }
 
-.reveal .title-slide .title-right {
-  flex: 0 0 65%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  background: #F3E4C5;
-  padding: 2em 3em;
-  box-sizing: border-box;
+/* Title content positioned on the right */
+.reveal .title-slide .title-content {
+  margin-left: 38%;
+  padding: 1em 1.5em;
+  text-align: left;
 }
 
-.reveal .title-slide .title-right h1 {
+.reveal .title-slide .title-content h1 {
   font-size: 1.6em;
   color: #00223D;
-  margin-bottom: 0.2em;
+  margin: 0 0 0.15em 0;
   line-height: 1.2;
 }
 
-.reveal .title-slide .title-right h2 {
-  font-size: 0.75em;
+.reveal .title-slide .title-content h2 {
+  font-size: 0.7em;
   color: #00223D;
   font-weight: 400;
-  margin-bottom: 0.8em;
-  opacity: 0.8;
+  margin: 0 0 1em 0;
+  opacity: 0.75;
 }
 
-.reveal .title-slide .title-right p {
-  font-size: 0.55em;
+.reveal .title-slide .title-content p {
+  font-size: 0.5em;
   color: #53575A;
+  margin: 0;
+  line-height: 1.7;
 }
 
 /* =============================================
