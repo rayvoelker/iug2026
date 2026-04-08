@@ -12,7 +12,7 @@
 
 		<link rel="stylesheet" href="reveal/reset.css">
 		<link rel="stylesheet" href="reveal/reveal.css">
-		<link rel="stylesheet" href="reveal/theme/white.css" id="theme">
+		<link rel="stylesheet" href="reveal/white.css" id="theme">
 		<link rel="stylesheet" href="css/iug2026.css">
 
 		<!-- Syntax highlighting -->
@@ -25,8 +25,9 @@
 		</div>
 
 		<div class="reveal">
-			<!-- Persistent footer bar matching template (beige bar + logo) -->
+			<!-- Persistent footer bar matching template (beige bar + logos) -->
 			<div class="footer-bar">
+				<img src="assets/CHPL_Brandmark_Primary.png" alt="Cincinnati & Hamilton County Public Library" class="footer-chpl-logo">
 				<img src="assets/iug2026-logo.jpg" alt="IUG 2026 Chicago">
 			</div>
 
@@ -37,12 +38,13 @@
 				<section class="title-slide" data-background-color="#F3E4C5" data-state="no-footer">
 					<div class="title-content">
 						<h1>I &#10084;&#65039; Datasette</h1>
-						<h2>From ILS Snapshots to a $5/Month Analysis Platform</h2>
+						<h2>From ILS Data to a $5/Month Analysis Platform</h2>
 						<p>
 							Ray Voelker<br>
 							Cincinnati &amp; Hamilton County Public Library<br>
 							<a href="mailto:ray.voelker@chpl.org">ray.voelker@chpl.org</a>
 						</p>
+						<img src="assets/CHPL_Brandmark_Primary.png" alt="Cincinnati & Hamilton County Public Library" class="chpl-logo">
 					</div>
 				</section>
 
@@ -60,9 +62,9 @@
 
 						<li>Libraries sit on TONS of structured data</li>
 
-						<li>ILS systems weren't designed for flexible, ad-hoc analysis</li>
+						<li>ILS systems weren't designed for flexible, arbitrary queries and analysis tasks</li>
 
-						<li>The people who know the collection best often have the <em>least</em> direct access to the data</li>
+						<li>The people who work with the collection best often have the <em>least</em> direct access to the data</li>
 
 
 
@@ -89,7 +91,7 @@
 
 					<ul>
 
-						<li>Wrestling with complicated ETL pipelines</li>
+						<li>Wrestling with complicated data pipelines / stale spreadsheets</li>
 
 						<li>Rely on one or two staff to produce reports</li>
 
@@ -122,13 +124,13 @@ Datasette gives you a proper API instead.
 				<section>
 
 
-					<h2>What If You Could Just... Explore It?</h2>
+					<h2>What If You Could Just... Browse It?</h2>
 
 
 
 					<ul>
 
-						<li>Browse the entire collection in a web browser</li>
+						<li>Browse the entire collection metadata in a web browser</li>
 
 						<li>Filter by location, format, status, date &mdash; instantly</li>
 
@@ -147,7 +149,7 @@ Datasette gives you a proper API instead.
 
 
 					<p style="margin-top: 0.8em; font-size: 0.6em;">
-						<a href="https://collection-analysis.cincy.pl/" target="_blank">collection-analysis.cincy.pl</a>
+						<a href="https://collection-analysis.cincy.pl/" target="_top">collection-analysis.cincy.pl</a>
 					</p>
 
 
@@ -157,6 +159,17 @@ Datasette gives you a proper API instead.
 						"That's exactly what we built — and it costs $5/month to run."
 
 					</aside>
+
+				</section>
+
+
+
+
+				<section data-background="white">
+					<h2>collection-analysis.cincy.pl</h2>
+					<iframe src="https://collection-analysis.cincy.pl/"
+						style="width: 100%; height: 550px; border: 2px solid #E8E8E8; border-radius: 8px;">
+					</iframe>
 
 				</section>
 
@@ -189,7 +202,7 @@ Datasette gives you a proper API instead.
 
 
 					<p style="margin-top: 0.8em; font-size: 0.6em;">
-						<a href="https://datasette.io/" target="_blank">datasette.io</a>
+						<a href="https://datasette.io/" target="_top">datasette.io</a>
 					</p>
 
 
@@ -209,7 +222,7 @@ Datasette gives you a proper API instead.
 
 					<ul>
 
-						<li>Written in Python / Available via pip</li>
+						<li>Written in Python / Available via <a href="pypi.org">PyPI.org</a></li>
 
 						<li>Easy and intuitive to use</li>
 
@@ -217,46 +230,11 @@ Datasette gives you a proper API instead.
 
 						<li>Useful, large, and growing plugin library</li>
 
-						<li>Built-in API... Using SQL!</li>
+						<li>Built-in API... THE API IS SQL!</li>
 
 						<li>Open source + supportive developer</li>
 
 						<li>Flexible deployment with <span class="accent">CHEAP</span> hosting options</li>
-
-
-
-					</ul>
-
-
-
-
-
-
-
-
-				</section>
-
-
-
-
-				<section data-background-color="#00223D">
-
-
-					<h2>Cincinnati &amp; Hamilton County Public Library</h2>
-
-
-
-					<ul>
-
-						<li>~9.6 million volumes (2nd largest public library collection)</li>
-
-						<li>41 locations across Hamilton County</li>
-
-						<li>21+ million items circulated annually</li>
-
-						<li>Main Library: 4M+ items/year (most of any single US location)</li>
-
-						<li>Runs the Sierra ILS</li>
 
 
 
@@ -284,9 +262,7 @@ Datasette gives you a proper API instead.
 
 
 					<pre><code data-trim class="text">
-Sierra ILS
-    ↓
-PostgreSQL (Sierra DB)
+Sierra ILS PostgreSQL (Sierra DB)
     ↓
 Python Scripts (sqlite-utils)
     ↓
@@ -298,7 +274,7 @@ Datasette → collection-analysis.cincy.pl
 
 
 					<p style="margin-top: 0.8em; font-size: 0.6em;">
-						<a href="https://github.com/cincinnatilibrary/collection-analysis" target="_blank">github.com/cincinnatilibrary/collection-analysis</a>
+						<a href="https://github.com/cincinnatilibrary/collection-analysis" target="_top">github.com/cincinnatilibrary/collection-analysis</a>
 					</p>
 
 
@@ -358,10 +334,6 @@ Filter to single branch → Custom SQL query → CSV export → JSON API
 
 
 
-
-					<p style="margin-top: 0.8em; font-size: 0.6em;">
-						<a href="https://ils-underground.github.io/python_datasette_vps.html" target="_blank">Step-by-step guide: ils-underground.github.io</a>
-					</p>
 
 
 
@@ -458,41 +430,6 @@ in Datasette without writing SQL.
 				<section>
 
 
-					<h2>What's New in Datasette (2025-2026)</h2>
-
-
-
-					<ul>
-
-						<li>Datasette 1.0 alpha series</li>
-
-						<li><strong>datasette-plot</strong> &mdash; new visualization plugin</li>
-
-						<li><strong>datasette-extract</strong> &mdash; LLM-powered data extraction</li>
-
-						<li><strong>Datasette Lite</strong> &mdash; runs entirely in the browser (WebAssembly)</li>
-
-						<li>Simon Willison's NICAR 2026 workshop: coding agents + Datasette</li>
-
-
-
-					</ul>
-
-
-
-
-
-
-
-
-				</section>
-
-
-
-
-				<section>
-
-
 					<h2>Once You Have the Pattern, Everything Is a Dataset</h2>
 
 
@@ -503,13 +440,7 @@ in Datasette without writing SQL.
 
 						<li>Newspaper indexes (Newsdex) &mdash; <em>up next!</em></li>
 
-						<li>Program attendance</li>
-
-						<li>Website analytics</li>
-
-						<li>Vendor usage statistics</li>
-
-						<li>Budget/purchasing data</li>
+						<li>Acquisitions/purchasing data</li>
 
 
 
@@ -560,7 +491,7 @@ datasette my-data.db
 
 
 					<p style="margin-top: 0.8em; font-size: 0.6em;">
-						<a href="https://lite.datasette.io/" target="_blank">Or try Datasette Lite &mdash; no install needed!</a>
+						<a href="https://lite.datasette.io/" target="_top">Or try Datasette Lite &mdash; no install needed!</a>
 					</p>
 
 
@@ -583,19 +514,17 @@ datasette my-data.db
 
 					<ul style="font-size: 0.7em;">
 
-						<li><a href="https://datasette.io/">datasette.io &mdash; Datasette</a></li>
+						<li><a href="https://datasette.io/" target="_top">datasette.io &mdash; Datasette</a></li>
 
-						<li><a href="https://sqlite-utils.datasette.io/">sqlite-utils.datasette.io &mdash; sqlite-utils</a></li>
+						<li><a href="https://sqlite-utils.datasette.io/" target="_top">sqlite-utils.datasette.io &mdash; sqlite-utils</a></li>
 
-						<li><a href="https://collection-analysis.cincy.pl/">collection-analysis.cincy.pl &mdash; CHPL Collection Analysis (live)</a></li>
+						<li><a href="https://collection-analysis.cincy.pl/" target="_top">collection-analysis.cincy.pl &mdash; CHPL Collection Analysis (live)</a></li>
 
-						<li><a href="https://github.com/cincinnatilibrary/collection-analysis">github.com/cincinnatilibrary/collection-analysis &mdash; Source Code</a></li>
+						<li><a href="https://github.com/cincinnatilibrary/collection-analysis" target="_top">github.com/cincinnatilibrary/collection-analysis &mdash; Source Code</a></li>
 
-						<li><a href="https://ils-underground.github.io/python_datasette_vps.html">ils-underground.github.io &mdash; VPS Hosting Guide</a></li>
+						<li><a href="https://datasette.io/tutorials" target="_top">datasette.io/tutorials &mdash; Tutorials</a></li>
 
-						<li><a href="https://datasette.io/tutorials">datasette.io/tutorials &mdash; Tutorials</a></li>
-
-						<li><a href="https://simonwillison.net/">simonwillison.net &mdash; Simon Willison's Blog</a></li>
+						<li><a href="https://simonwillison.net/" target="_top">simonwillison.net &mdash; Simon Willison's Blog</a></li>
 
 					</ul>
 
@@ -624,6 +553,7 @@ or want to use this at your library!
 							<a href="mailto:ray.voelker@chpl.org">ray.voelker@chpl.org</a><br>
 							<a href="https://github.com/rayvoelker">github.com/rayvoelker</a>
 						</p>
+						<img src="assets/CHPL_Brandmark_Primary.png" alt="Cincinnati & Hamilton County Public Library" class="chpl-logo">
 					</div>
 				</section>
 
@@ -633,9 +563,10 @@ or want to use this at your library!
 		</div>
 
 		<script src="reveal/reveal.js"></script>
-		<script src="reveal/plugin/notes.js"></script>
-		<script src="reveal/plugin/markdown.js"></script>
-		<script src="reveal/plugin/highlight.js"></script>
+		<script src="reveal/notes.js"></script>
+		<script src="reveal/markdown.js"></script>
+		<script src="reveal/highlight.js"></script>
+		<script src="plugin/elapsed-time-bar/elapsed-time-bar.js"></script>
 		<script>
 			Reveal.initialize({
 				hash: true,
@@ -643,7 +574,11 @@ or want to use this at your library!
 				minScale: 0.2,
 				maxScale: 1.5,
 				margin: 0.04,
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				allottedTime: 15 * 60 * 1000, // 15 minutes
+				progressBarHeight: 4,
+				barColor: '#0C2340',
+				pausedBarColor: 'rgba(12,35,64,0.4)',
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, ElapsedTimeBar ]
 			});
 
 			// Toggle footer bar and logo panel based on slide type

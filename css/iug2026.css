@@ -5,7 +5,7 @@
  *   - Content slides: white body with beige footer bar + small logo
  *
  * Color Palette (from template):
- *   Dark Navy:    #00223D (headings, text)
+ *   (Old IUG Navy: #00223D — replaced by CHPL Navy #0C2340)
  *   Charcoal:     #53575A (body text)
  *   Blue:         #156082 (primary accent)
  *   Light Blue:   #0F9ED5 (links, highlights)
@@ -16,11 +16,33 @@
  *   White:        #FFFFFF (slide backgrounds)
  */
 
+/* -- Web font fallback (Inter is closest free match to Aptos/BrownStd) -- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
 /* -- Base overrides on top of white.css -- */
 
+/*
+ * Font stack priority:
+ *   1. Aptos / Aptos Display — IUG 2026 template font (Windows/Office)
+ *   2. BrownStd — CHPL brand font (licensed, Lineto)
+ *   3. Inter — closest free web match
+ *   4. Arial — CHPL-approved digital fallback
+ *
+ * Color palette merges IUG 2026 template with CHPL brand:
+ *   CHPL Navy:    #0C2340 (headings — nearly identical to IUG #00223D)
+ *   Charcoal:     #53575A (body text)
+ *   CHPL Cream:   #F6F1EB (warm backgrounds, title slides)
+ *   IUG Beige:    #F3E4C5 (footer bar)
+ *   Blue:         #156082 (primary accent)
+ *   Light Blue:   #0F9ED5 (links, highlights)
+ *   Orange:       #E97132 (accent, emphasis)
+ *   Teal:         #467886 (hyperlinks)
+ */
+
 .reveal {
-  font-family: 'Aptos', 'Inter', 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Aptos', 'BrownStd', 'Inter', Arial, sans-serif;
   font-size: 42px;
+  font-weight: 300;
   color: #53575A;
 }
 
@@ -30,8 +52,8 @@
 .reveal h4,
 .reveal h5,
 .reveal h6 {
-  font-family: 'Aptos Display', 'Inter', 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #00223D;
+  font-family: 'Aptos Display', 'Aptos', 'BrownStd', 'Inter', Arial, sans-serif;
+  color: #0C2340;
   font-weight: 700;
   text-transform: none;
   letter-spacing: normal;
@@ -62,7 +84,7 @@
 }
 
 .reveal .navy {
-  color: #00223D;
+  color: #0C2340;
 }
 
 /* =============================================
@@ -70,7 +92,7 @@
    ============================================= */
 
 .reveal .controls {
-  bottom: 70px !important;
+  bottom: 110px !important;
 }
 
 /* =============================================
@@ -115,14 +137,14 @@
 
 .reveal .title-slide .title-content h1 {
   font-size: 1.6em;
-  color: #00223D;
+  color: #0C2340;
   margin: 0 0 0.15em 0;
   line-height: 1.2;
 }
 
 .reveal .title-slide .title-content h2 {
   font-size: 0.7em;
-  color: #00223D;
+  color: #0C2340;
   font-weight: 400;
   margin: 0 0 1em 0;
   opacity: 0.75;
@@ -135,34 +157,47 @@
   line-height: 1.7;
 }
 
+/* CHPL logo on title/closing slides */
+.reveal .title-slide .chpl-logo {
+  max-width: 200px;
+  margin-top: 1.2em;
+}
+
 /* =============================================
    CONTENT SLIDES — beige footer bar with logo
    ============================================= */
 
-/* Persistent footer bar on all non-title slides */
+/* Persistent footer bar on all non-title slides
+   Template: 14.4% of slide height, logo is 86% of bar height */
 .reveal .footer-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 60px;
+  height: 100px;
   background: #F3E4C5;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 10px;
+  padding-right: 8px;
   box-sizing: border-box;
   z-index: 100;
 }
 
 .reveal .footer-bar img {
-  height: 50px;
+  height: 86px;
   width: auto;
+}
+
+.reveal .footer-bar .footer-chpl-logo {
+  height: 52px;
+  margin-right: auto;
+  margin-left: 12px;
 }
 
 /* Ensure slide content doesn't overlap the footer */
 .reveal .slides section {
-  padding-bottom: 80px;
+  padding-bottom: 120px;
 }
 
 /* Title slides don't need footer padding */
@@ -171,11 +206,11 @@
 }
 
 /* Dark background slides (navy) */
-.reveal section[data-background-color="#00223D"] h1,
-.reveal section[data-background-color="#00223D"] h2,
-.reveal section[data-background-color="#00223D"] h3,
-.reveal section[data-background-color="#00223D"] p,
-.reveal section[data-background-color="#00223D"] li,
+.reveal section[data-background-color="#0C2340"] h1,
+.reveal section[data-background-color="#0C2340"] h2,
+.reveal section[data-background-color="#0C2340"] h3,
+.reveal section[data-background-color="#0C2340"] p,
+.reveal section[data-background-color="#0C2340"] li,
 .reveal section[data-background-color="#0E2841"] h1,
 .reveal section[data-background-color="#0E2841"] h2,
 .reveal section[data-background-color="#0E2841"] h3,
@@ -184,7 +219,7 @@
   color: #FFFFFF;
 }
 
-.reveal section[data-background-color="#00223D"] a,
+.reveal section[data-background-color="#0C2340"] a,
 .reveal section[data-background-color="#0E2841"] a {
   color: #0F9ED5;
 }
@@ -250,7 +285,7 @@
 }
 
 .reveal table th {
-  background: #00223D;
+  background: #0C2340;
   color: #FFFFFF;
   padding: 0.4em 0.6em;
   font-weight: 600;
@@ -307,19 +342,19 @@
 
   /* Smaller footer */
   .reveal .footer-bar {
-    height: 40px;
+    height: 60px;
   }
 
   .reveal .footer-bar img {
-    height: 32px;
+    height: 50px;
   }
 
   .reveal .controls {
-    bottom: 45px !important;
+    bottom: 65px !important;
   }
 
   .reveal .slides section {
-    padding-bottom: 50px;
+    padding-bottom: 70px;
   }
 
   .reveal li {
