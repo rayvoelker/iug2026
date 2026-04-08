@@ -33,6 +33,9 @@
 
 			<div class="slides">
 {% for slide in slides %}
+{% if slide.subslides %}
+				<section>
+{% endif %}
 {% if slide.type == 'title' %}
 				<!-- TITLE SLIDE -->
 				<section class="title-slide" data-background-color="#F3E4C5" data-state="no-footer">
@@ -205,6 +208,38 @@
 {% endif %}
 				</section>
 
+{% endif %}
+{% if slide.subslides %}
+{% for sub in slide.subslides %}
+				<section{% if sub.background %} data-background-color="{{ sub.background }}"{% endif %}>
+{% if sub.title %}
+					<h2>{{ sub.title }}</h2>
+{% endif %}
+{% if sub.subtitle %}
+					<p style="font-size: 0.7em;">{{ sub.subtitle }}</p>
+{% endif %}
+{% if sub.custom_html %}
+					{{ sub.custom_html }}
+{% endif %}
+{% if sub.bullets %}
+					<ul>
+{% for bullet in sub.bullets %}
+						<li>{{ bullet }}</li>
+{% endfor %}
+					</ul>
+{% endif %}
+{% if sub.code %}
+					<pre><code data-trim class="{{ sub.code.language }}">
+{{ sub.code.body }}					</code></pre>
+{% endif %}
+{% if sub.notes %}
+					<aside class="notes">
+						{{ sub.notes }}
+					</aside>
+{% endif %}
+				</section>
+{% endfor %}
+				</section>
 {% endif %}
 {% endfor %}
 			</div>
