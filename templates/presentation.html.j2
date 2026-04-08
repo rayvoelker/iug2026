@@ -25,8 +25,9 @@
 		</div>
 
 		<div class="reveal">
-			<!-- Persistent footer bar matching template (beige bar + logo) -->
+			<!-- Persistent footer bar matching template (beige bar + logos) -->
 			<div class="footer-bar">
+				<img src="assets/CHPL_Brandmark_Primary.png" alt="Cincinnati & Hamilton County Public Library" class="footer-chpl-logo">
 				<img src="assets/iug2026-logo.jpg" alt="IUG 2026 Chicago">
 			</div>
 
@@ -43,6 +44,7 @@
 							{{ meta.institution }}<br>
 							<a href="mailto:{{ meta.email }}">{{ meta.email }}</a>
 						</p>
+						<img src="assets/CHPL_Brandmark_Primary.png" alt="Cincinnati & Hamilton County Public Library" class="chpl-logo">
 					</div>
 				</section>
 
@@ -60,6 +62,7 @@
 							<a href="mailto:{{ meta.email }}">{{ meta.email }}</a><br>
 							<a href="https://github.com/rayvoelker">github.com/rayvoelker</a>
 						</p>
+						<img src="assets/CHPL_Brandmark_Primary.png" alt="Cincinnati & Hamilton County Public Library" class="chpl-logo">
 					</div>
 				</section>
 
@@ -108,13 +111,13 @@
 {% if slide.links_list %}
 					<ul style="font-size: 0.7em;">
 {% for link in slide.links_list %}
-						<li><a href="{{ link.url }}">{{ link.text }}</a></li>
+						<li><a href="{{ link.url }}" target="_top">{{ link.text }}</a></li>
 {% endfor %}
 					</ul>
 {% endif %}
 {% if slide.link %}
 					<p style="margin-top: 0.8em; font-size: 0.6em;">
-						<a href="{{ slide.link.url }}" target="_blank">{{ slide.link.text }}</a>
+						<a href="{{ slide.link.url }}" target="_top">{{ slide.link.text }}</a>
 					</p>
 {% endif %}
 {% if slide.footer_text %}
@@ -211,6 +214,7 @@
 		<script src="node_modules/reveal.js/dist/plugin/notes.js"></script>
 		<script src="node_modules/reveal.js/dist/plugin/markdown.js"></script>
 		<script src="node_modules/reveal.js/dist/plugin/highlight.js"></script>
+		<script src="plugin/elapsed-time-bar/elapsed-time-bar.js"></script>
 		<script>
 			Reveal.initialize({
 				hash: true,
@@ -218,7 +222,11 @@
 				minScale: 0.2,
 				maxScale: 1.5,
 				margin: 0.04,
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				allottedTime: 15 * 60 * 1000, // 15 minutes
+				progressBarHeight: 4,
+				barColor: '#0C2340',
+				pausedBarColor: 'rgba(12,35,64,0.4)',
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, ElapsedTimeBar ]
 			});
 
 			// Toggle footer bar and logo panel based on slide type

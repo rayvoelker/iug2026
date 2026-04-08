@@ -12,21 +12,21 @@ slides:
 
   - type: title
     title: "I &#10084;&#65039; Datasette"
-    subtitle: "From ILS Snapshots to a $5/Month Analysis Platform"
+    subtitle: "From ILS Data to a $5/Month Analysis Platform"
 
   - type: content
     title: "Your Data Is Trapped"
     bullets:
       - "Libraries sit on TONS of structured data"
-      - "ILS systems weren't designed for flexible, ad-hoc analysis"
+      - "ILS systems weren't designed for flexible, arbitrary queries and analysis tasks"
       - >-
-        The people who know the collection best often have
+        The people who work with the collection best often have
         the <em>least</em> direct access to the data
 
   - type: content
     title: "So What Do People Do?"
     bullets:
-      - "Wrestling with complicated ETL pipelines"
+      - "Wrestling with complicated data pipelines / stale spreadsheets"
       - "Rely on one or two staff to produce reports"
       - >-
         Scrape the Public WebPAC
@@ -38,9 +38,9 @@ slides:
       Datasette gives you a proper API instead.
 
   - type: content
-    title: "What If You Could Just... Explore It?"
+    title: "What If You Could Just... Browse It?"
     bullets:
-      - "Browse the entire collection in a web browser"
+      - "Browse the entire collection metadata in a web browser"
       - "Filter by location, format, status, date &mdash; instantly"
       - "Run pre-built queries without writing SQL"
       - "Export results to CSV"
@@ -66,36 +66,35 @@ slides:
     link:
       url: "https://datasette.io/"
       text: "datasette.io"
+    no_iframe: true
 
   - type: content
     title: "Things I &#10084;&#65039; about Datasette"
     bullets:
-      - "Written in Python / Available via pip"
+      - 'Written in Python / Available via <a href="pypi.org">PyPI.org</a>'
       - "Easy and intuitive to use"
       - "Well-documented"
       - "Useful, large, and growing plugin library"
-      - "Built-in API... Using SQL!"
+      - "Built-in API... THE API IS SQL!"
       - "Open source + supportive developer"
       - 'Flexible deployment with <span class="accent">CHEAP</span> hosting options'
 
-  - type: content
-    title: "Cincinnati &amp; Hamilton County Public Library"
-    background: "#00223D"
-    bullets:
-      - "~9.6 million volumes (2nd largest public library collection)"
-      - "41 locations across Hamilton County"
-      - "21+ million items circulated annually"
-      - "Main Library: 4M+ items/year (most of any single US location)"
-      - "Runs the Sierra ILS"
+  # - type: content
+  #   title: "Cincinnati &amp; Hamilton County Public Library"
+  #   background: "#00223D"
+  #   bullets:
+  #     - "~9.6 million volumes (2nd largest public library collection)"
+  #     - "41 locations across Hamilton County"
+  #     - "21+ million items circulated annually"
+  #     - "Main Library: 4M+ items/year (most of any single US location)"
+  #     - "Runs the Sierra ILS"
 
   - type: content
     title: "The Pipeline"
     code:
       language: text
       body: |
-        Sierra ILS
-            ↓
-        PostgreSQL (Sierra DB)
+        Sierra ILS PostgreSQL (Sierra DB)
             ↓
         Python Scripts (sqlite-utils)
             ↓
@@ -105,6 +104,7 @@ slides:
     link:
       url: "https://github.com/cincinnatilibrary/collection-analysis"
       text: "github.com/cincinnatilibrary/collection-analysis"
+    no_iframe: true
 
   - type: iframe
     title: "Demo Time!"
@@ -123,9 +123,9 @@ slides:
       - "Apache reverse proxy (free)"
       - "Let's Encrypt TLS (free)"
       - "Datasette + Python (free, open source)"
-    link:
-      url: "https://ils-underground.github.io/python_datasette_vps.html"
-      text: "Step-by-step guide: ils-underground.github.io"
+    # link:
+    #   url: "https://ils-underground.github.io/python_datasette_vps.html"
+    #   text: "Step-by-step guide: ils-underground.github.io"
 
   - type: content
     title: "Pre-Built Queries for Domain Experts"
@@ -160,24 +160,21 @@ slides:
       Named parameters like :branch_name give users a nice input form
       in Datasette without writing SQL.
 
-  - type: content
-    title: "What's New in Datasette (2025-2026)"
-    bullets:
-      - "Datasette 1.0 alpha series"
-      - "<strong>datasette-plot</strong> &mdash; new visualization plugin"
-      - "<strong>datasette-extract</strong> &mdash; LLM-powered data extraction"
-      - "<strong>Datasette Lite</strong> &mdash; runs entirely in the browser (WebAssembly)"
-      - "Simon Willison's NICAR 2026 workshop: coding agents + Datasette"
+  # - type: content
+  #   title: "What's New in Datasette (2025-2026)"
+  #   bullets:
+  #     - "Datasette 1.0 alpha series"
+  #     - "<strong>datasette-plot</strong> &mdash; new visualization plugin"
+  #     - "<strong>datasette-extract</strong> &mdash; LLM-powered data extraction"
+  #     - "<strong>Datasette Lite</strong> &mdash; runs entirely in the browser (WebAssembly)"
+  #     - "Simon Willison's NICAR 2026 workshop: coding agents + Datasette"
 
   - type: content
     title: "Once You Have the Pattern, Everything Is a Dataset"
     bullets:
       - "ILS collection data &#10003;"
       - "Newspaper indexes (Newsdex) &mdash; <em>up next!</em>"
-      - "Program attendance"
-      - "Website analytics"
-      - "Vendor usage statistics"
-      - "Budget/purchasing data"
+      - "Acquisitions/purchasing data"
     notes: |
       Tease Talk 2: "We also used this to liberate a century of Cincinnati
       newspaper index data — that's the Newsdex project."
@@ -202,6 +199,7 @@ slides:
     link:
       url: "https://lite.datasette.io/"
       text: "Or try Datasette Lite &mdash; no install needed!"
+    no_iframe: true
 
   - type: content
     title: "Resources"
@@ -214,8 +212,6 @@ slides:
         text: "collection-analysis.cincy.pl &mdash; CHPL Collection Analysis (live)"
       - url: "https://github.com/cincinnatilibrary/collection-analysis"
         text: "github.com/cincinnatilibrary/collection-analysis &mdash; Source Code"
-      - url: "https://ils-underground.github.io/python_datasette_vps.html"
-        text: "ils-underground.github.io &mdash; VPS Hosting Guide"
       - url: "https://datasette.io/tutorials"
         text: "datasette.io/tutorials &mdash; Tutorials"
       - url: "https://simonwillison.net/"

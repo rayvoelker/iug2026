@@ -22,7 +22,18 @@ def build_talk(yaml_path: Path) -> None:
     )
     template = env.get_template("presentation.html.j2")
 
-    html = template.render(meta=data["meta"], slides=data["slides"])
+    # Auto-insert iframe slides after any slide with a link
+    expanded = []
+    for slide in data["slides"]:
+        expanded.append(slide)
+        if slide.get("link") and not slide.get("no_iframe"):
+            expanded.append({
+                "type": "iframe",
+                "title": slide["link"].get("text", slide.get("title", "")),
+                "url": slide["link"]["url"],
+            })
+
+    html = template.render(meta=data["meta"], slides=expanded)
 
     output_path = ROOT / data["meta"]["filename"]
     output_path.write_text(html)
