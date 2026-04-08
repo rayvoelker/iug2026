@@ -95,6 +95,18 @@
   bottom: 110px !important;
 }
 
+/* Slide number: top-right, e.g. "3/16" */
+.reveal .slide-number {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  bottom: auto;
+  left: auto;
+  font-size: 0.5em;
+  color: #808285;
+  background: none;
+}
+
 /* =============================================
    TITLE / CLOSING SLIDES — split layout
    Left: white panel with logo

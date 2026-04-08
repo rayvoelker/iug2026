@@ -4,11 +4,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<meta name="description" content="From Index Cards to Millennium ILS to SQLite: Liberating a Century of Cincinnati News with Datasette - IUG 2026">
-		<meta name="keywords" content="Ray Voelker, Cincinnati & Hamilton County Public Library, IUG, IUG 2026, Datasette, Newsdex, MARC, pymarc, SQLite, newspaper index">
+		<meta name="description" content="I Love Datasette: Collection Analysis and the Newsdex Project at Cincinnati & Hamilton County Public Library - IUG 2026">
+		<meta name="keywords" content="Ray Voelker, Cincinnati & Hamilton County Public Library, IUG, IUG 2026, Datasette, Python, SQLite, SQL, Collection Analysis, Newsdex, MARC, pymarc, newspaper index">
 		<meta name="author" content="Ray Voelker">
 
-		<title>From Index Cards to SQLite - IUG 2026 - Ray Voelker</title>
+		<title>I &#10084;&#65039; Datasette - IUG 2026 - Ray Voelker</title>
 
 		<link rel="stylesheet" href="reveal/reset.css">
 		<link rel="stylesheet" href="reveal/reveal.css">
@@ -37,8 +37,8 @@
 				<!-- TITLE SLIDE -->
 				<section class="title-slide" data-background-color="#F3E4C5" data-state="no-footer">
 					<div class="title-content">
-						<h1 style="font-size: 1.3em;">From Index Cards to SQLite</h1>
-						<h2>Liberating a Century of Cincinnati News with Datasette</h2>
+						<h1>I &#10084;&#65039; Datasette</h1>
+						<h2>Collection Analysis &amp; the Newsdex Project at CHPL</h2>
 						<p>
 							Ray Voelker<br>
 							Cincinnati &amp; Hamilton County Public Library<br>
@@ -46,6 +46,323 @@
 						</p>
 						<img src="assets/CHPL_Brandmark_Primary.png" alt="Cincinnati & Hamilton County Public Library" class="chpl-logo">
 					</div>
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>Your Data Is Trapped</h2>
+
+
+
+					<ul>
+
+						<li>Libraries sit on TONS of structured data</li>
+
+						<li>ILS systems weren't designed for flexible, arbitrary queries and analysis tasks</li>
+
+						<li>The people who work with the collection best often have the <em>least</em> direct access to the data</li>
+
+
+
+					</ul>
+
+
+
+
+
+
+
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>So What Do People Do?</h2>
+
+
+
+					<ul>
+
+						<li>Wrestling with complicated data pipelines / stale spreadsheets</li>
+
+						<li>Rely on one or two staff to produce reports</li>
+
+						<li>Scrape the Public WebPAC <em>(this is especially bad)</em></li>
+
+
+
+					</ul>
+
+
+
+
+
+
+
+
+					<aside class="notes">
+						Riley Walz's "Library Spy" scrapes NYPL availability.
+If you don't publish your data, people scrape your WebPAC.
+
+					</aside>
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>What If You Could Just... Browse It?</h2>
+
+
+
+					<ul>
+
+						<li>Browse the entire collection metadata in a web browser</li>
+
+						<li>Filter by location, format, status, date &mdash; instantly</li>
+
+						<li>Run pre-built queries without writing SQL</li>
+
+						<li>Export results to CSV</li>
+
+						<li>Access a JSON API for advanced use</li>
+
+
+
+					</ul>
+
+
+
+
+
+					<p style="margin-top: 0.8em; font-size: 0.6em;">
+						<a href="https://collection-analysis.cincy.pl/" target="_top">collection-analysis.cincy.pl</a>
+					</p>
+
+
+
+
+					<aside class="notes">
+						"That's exactly what we built — and it costs $5/month to run."
+
+					</aside>
+
+				</section>
+
+
+
+
+				<section data-background="white">
+					<h2>collection-analysis.cincy.pl</h2>
+					<iframe src="https://collection-analysis.cincy.pl/"
+						style="width: 100%; height: 550px; border: 2px solid #E8E8E8; border-radius: 8px;">
+					</iframe>
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>What is Datasette?</h2>
+
+
+
+					<ul>
+
+						<li>Created by Simon Willison (co-creator of Django)</li>
+
+						<li>"A tool for exploring and publishing data"</li>
+
+						<li>Aimed at <span class="accent">journalists</span>, <span class="accent">museum curators</span>, <span class="accent">archivists</span>, <span class="accent">local governments</span>, and <span class="accent">anyone else who has data</span></li>
+
+						<li>Read-only by default &mdash; safe to hand to anyone</li>
+
+
+
+					</ul>
+
+
+
+
+
+					<p style="margin-top: 0.8em; font-size: 0.6em;">
+						<a href="https://datasette.io/" target="_top">datasette.io</a>
+					</p>
+
+
+
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>Things I &#10084;&#65039; about Datasette</h2>
+
+
+
+					<ul>
+
+						<li>Written in Python / Available via <a href="pypi.org">PyPI.org</a></li>
+
+						<li>Easy and intuitive to use</li>
+
+						<li>Well-documented</li>
+
+						<li>Built-in API... THE API IS SQL!</li>
+
+						<li>Open source + supportive developer</li>
+
+						<li>Flexible deployment with <span class="accent">CHEAP</span> hosting options</li>
+
+
+
+					</ul>
+
+
+
+
+
+
+
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>The Pipeline</h2>
+
+
+
+
+
+					<pre><code data-trim class="text">
+Sierra ILS PostgreSQL (Sierra DB)
+    ↓
+Python Scripts (sqlite-utils)
+    ↓
+SQLite Database
+    ↓
+Datasette → collection-analysis.cincy.pl
+					</code></pre>
+
+
+
+					<p style="margin-top: 0.8em; font-size: 0.6em;">
+						<a href="https://github.com/cincinnatilibrary/collection-analysis" target="_top">github.com/cincinnatilibrary/collection-analysis</a>
+					</p>
+
+
+
+
+				</section>
+
+
+
+
+				<section data-background="white">
+					<h2>Demo Time!</h2>
+					<iframe src="https://collection-analysis.cincy.pl/"
+						style="width: 100%; height: 550px; border: 2px solid #E8E8E8; border-radius: 8px;">
+					</iframe>
+
+					<aside class="notes">
+						Demo flow: Browse item table → Facet by location → Facet by format →
+Filter to single branch → CSV export
+
+					</aside>
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>Hosting: $5 a Month. Seriously.</h2>
+
+
+
+					<ul>
+
+						<li>DigitalOcean Droplet: <span class="accent">$5/month</span></li>
+
+
+						<ul>
+
+							<li>1 vCPU, 1 GB RAM, 25 GB SSD</li>
+
+						</ul>
+
+
+
+						<li>Apache reverse proxy (free)</li>
+
+						<li>Let's Encrypt TLS (free)</li>
+
+						<li>Datasette + Python (free, open source)</li>
+
+
+					</ul>
+
+
+
+
+
+
+
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>Once You Have the Pattern, Everything Is a Dataset</h2>
+
+
+
+					<ul>
+
+						<li>ILS collection data &#10003;</li>
+
+						<li>Newspaper indexes (Newsdex) &mdash; <em>let me show you...</em></li>
+
+
+
+					</ul>
+
+
+
+
+
+
+
+
 				</section>
 
 
@@ -102,8 +419,7 @@ intentional effort by generations of librarians.
 
 					<aside class="notes">
 						Every card represents a librarian reading an article
-and deciding it was worth preserving. Expert human
-classification, not automated tagging.
+and deciding it was worth preserving.
 
 					</aside>
 
@@ -143,9 +459,9 @@ classification, not automated tagging.
 
 
 					<aside class="notes">
-						This is the practical motivation. The data was trapped in a system
-we needed to turn off. MARC export + Datasette gave us a way out
-that actually improved access.
+						The data was trapped in a system we needed to turn off.
+MARC export + Datasette gave us a way out that actually
+improved access.
 
 					</aside>
 
@@ -196,9 +512,8 @@ Subjects:  Floods; Floods (1937);
 
 					<aside class="notes">
 						Real record from the Newsdex MARC export. The 1937 flood
-is iconic in Cincinnati. Note the librarian cross-referenced
-three different flood years — expert human classification
-spanning decades of cataloging work.
+is iconic in Cincinnati. The librarian cross-referenced
+three different flood years.
 
 					</aside>
 
@@ -210,7 +525,7 @@ spanning decades of cataloging work.
 				<section>
 
 
-					<h2>The Pipeline</h2>
+					<h2>The Newsdex Pipeline</h2>
 
 
 
@@ -234,12 +549,6 @@ Datasette → newsdex.chpl.org
 
 
 
-
-					<aside class="notes">
-						Keep this quick. The point is that the tools are simple and
-the whole pipeline is open source on GitHub.
-
-					</aside>
 
 				</section>
 
@@ -275,11 +584,13 @@ Facet by newspaper → Facet by year/decade
 
 					<ul style="font-size: 0.7em;">
 
+						<li><a href="https://collection-analysis.cincy.pl/" target="_top">collection-analysis.cincy.pl &mdash; Collection Analysis (live)</a></li>
+
 						<li><a href="https://newsdex.chpl.org/" target="_top">newsdex.chpl.org &mdash; Newsdex (live search)</a></li>
 
 						<li><a href="https://chpl.org/blogs/post/newsdex-upgrade/" target="_top">chpl.org/blogs/post/newsdex-upgrade &mdash; The Full Newsdex Story</a></li>
 
-						<li><a href="https://github.com/cincinnatilibrary/newsdex" target="_top">github.com/cincinnatilibrary/newsdex &mdash; Source Code + Notebooks</a></li>
+						<li><a href="https://github.com/cincinnatilibrary" target="_top">github.com/cincinnatilibrary &mdash; CHPL on GitHub</a></li>
 
 						<li><a href="https://datasette.io/" target="_top">datasette.io &mdash; Datasette</a></li>
 
@@ -297,10 +608,12 @@ Facet by newspaper → Facet by year/decade
 				<!-- CLOSING SLIDE -->
 				<section class="title-slide" data-background-color="#F3E4C5" data-state="no-footer">
 					<div class="title-content">
-						<h1 style="font-size: 1.4em;">Thank You!</h1>
+						<h1 style="font-size: 1.4em;">Thanks!</h1>
 						<p style="font-size: 0.65em; margin-bottom: 1em;">
 							Thank you to the Genealogy &amp; Local History Department &mdash;
-they created this data over nearly 100 years.
+they created the Newsdex data over nearly 100 years.
+<br><br>
+&#10084;&#65039; Datasette? Let's talk!
 
 						</p>
 						<p>

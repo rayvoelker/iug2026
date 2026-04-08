@@ -292,8 +292,8 @@ Datasette → collection-analysis.cincy.pl
 					</iframe>
 
 					<aside class="notes">
-						Demo flow: Browse item table → Facet by location → Facet by format →
-Filter to single branch → Custom SQL query → CSV export → JSON API
+						# Demo flow: Browse item table → Facet by location → Facet by format →
+# Filter to single branch → Custom SQL query → CSV export → JSON API
 
 					</aside>
 
@@ -346,90 +346,6 @@ Filter to single branch → Custom SQL query → CSV export → JSON API
 				<section>
 
 
-					<h2>Pre-Built Queries for Domain Experts</h2>
-
-
-
-					<ul>
-
-						<li>Not everyone wants (or needs) to write SQL</li>
-
-						<li>Datasette supports "canned queries" with parameter inputs</li>
-
-						<li>Examples:</li>
-
-
-						<ul>
-
-							<li>"Items at [branch] not checked out since [date]"</li>
-
-							<li>"Top circulating titles by [format]"</li>
-
-							<li>"Collection age distribution for [branch]"</li>
-
-						</ul>
-
-
-
-						<li>Domain experts get answers; developers maintain the queries</li>
-
-
-					</ul>
-
-
-
-
-
-
-
-
-				</section>
-
-
-
-
-				<section>
-
-
-					<h2>SQL Example: Location Analysis</h2>
-
-
-
-
-
-					<pre><code data-trim class="sql">
-select
-  item.location_code,
-  l.location_name,
-  l.branch_name,
-  count(*) as count_items
-from
-  item
-  join location_view as l
-    on l.location_code = item.location_code
-where branch_name = :branch_name
-group by 1, 2, 3
-					</code></pre>
-
-
-
-
-
-
-					<aside class="notes">
-						Named parameters like :branch_name give users a nice input form
-in Datasette without writing SQL.
-
-					</aside>
-
-				</section>
-
-
-
-
-				<section>
-
-
 					<h2>Once You Have the Pattern, Everything Is a Dataset</h2>
 
 
@@ -439,8 +355,6 @@ in Datasette without writing SQL.
 						<li>ILS collection data &#10003;</li>
 
 						<li>Newspaper indexes (Newsdex) &mdash; <em>up next!</em></li>
-
-						<li>Acquisitions/purchasing data</li>
 
 
 
@@ -467,44 +381,6 @@ newspaper index data — that's the Newsdex project."
 				<section>
 
 
-					<h2>Try It Yourself &mdash; 5 Minutes</h2>
-
-
-
-
-
-					<pre><code data-trim class="bash">
-# Install
-pip install datasette sqlite-utils
-
-# Got a CSV? Make it a database.
-sqlite-utils insert my-data.db my_table my-data.csv --csv
-
-# Enable full-text search
-sqlite-utils enable-fts my-data.db my_table title description
-
-# Launch
-datasette my-data.db
-# → http://localhost:8001/
-					</code></pre>
-
-
-
-					<p style="margin-top: 0.8em; font-size: 0.6em;">
-						<a href="https://lite.datasette.io/" target="_top">Or try Datasette Lite &mdash; no install needed!</a>
-					</p>
-
-
-
-
-				</section>
-
-
-
-
-				<section>
-
-
 					<h2>Resources</h2>
 
 
@@ -514,15 +390,11 @@ datasette my-data.db
 
 					<ul style="font-size: 0.7em;">
 
-						<li><a href="https://datasette.io/" target="_top">datasette.io &mdash; Datasette</a></li>
-
-						<li><a href="https://sqlite-utils.datasette.io/" target="_top">sqlite-utils.datasette.io &mdash; sqlite-utils</a></li>
-
 						<li><a href="https://collection-analysis.cincy.pl/" target="_top">collection-analysis.cincy.pl &mdash; CHPL Collection Analysis (live)</a></li>
 
 						<li><a href="https://github.com/cincinnatilibrary/collection-analysis" target="_top">github.com/cincinnatilibrary/collection-analysis &mdash; Source Code</a></li>
 
-						<li><a href="https://datasette.io/tutorials" target="_top">datasette.io/tutorials &mdash; Tutorials</a></li>
+						<li><a href="https://datasette.io/" target="_top">datasette.io &mdash; Datasette</a></li>
 
 						<li><a href="https://simonwillison.net/" target="_top">simonwillison.net &mdash; Simon Willison's Blog</a></li>
 
@@ -570,7 +442,7 @@ or want to use this at your library!
 		<script>
 			Reveal.initialize({
 				hash: true,
-				slideNumber: true,
+				slideNumber: 'c/t',
 				minScale: 0.2,
 				maxScale: 1.5,
 				margin: 0.04,
