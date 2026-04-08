@@ -1,0 +1,275 @@
+meta:
+  title: "I &#10084;&#65039; Datasette"
+  subtitle: "Collection Analysis &amp; the Newsdex Project at CHPL"
+  description: "I Love Datasette: Collection Analysis and the Newsdex Project at Cincinnati & Hamilton County Public Library - IUG 2026"
+  keywords: "Ray Voelker, Cincinnati & Hamilton County Public Library, IUG, IUG 2026, Datasette, Python, SQLite, SQL, Collection Analysis, Newsdex, MARC, pymarc, newspaper index"
+  author: "Ray Voelker"
+  institution: "Cincinnati &amp; Hamilton County Public Library"
+  email: "ray.voelker@chpl.org"
+  filename: "talk-combined-datasette-at-the-library.html"
+
+slides:
+
+  # =============================================
+  # PART 1: I Love Datasette (Collection Analysis)
+  # =============================================
+
+  - type: title
+    title: "I &#10084;&#65039; Datasette"
+    subtitle: "Collection Analysis &amp; the Newsdex Project at CHPL"
+
+  - type: content
+    title: "Your Data Is Trapped"
+    bullets:
+      - "Libraries sit on TONS of structured data"
+      - "ILS systems weren't designed for flexible, arbitrary queries and analysis tasks"
+      - >-
+        The people who work with the collection best often have
+        the <em>least</em> direct access to the data
+
+  - type: content
+    title: "So What Do People Do?"
+    bullets:
+      - "Wrestling with complicated data pipelines / stale spreadsheets"
+      - "Rely on one or two staff to produce reports"
+      - >-
+        Scrape the Public WebPAC
+        <em>(this is especially bad)</em>
+    notes: |
+      Riley Walz's "Library Spy" scrapes NYPL availability.
+      If you don't publish your data, people scrape your WebPAC.
+
+  - type: content
+    title: "What If You Could Just... Browse It?"
+    bullets:
+      - "Browse the entire collection metadata in a web browser"
+      - "Filter by location, format, status, date &mdash; instantly"
+      - "Run pre-built queries without writing SQL"
+      - "Export results to CSV"
+      - "Access a JSON API for advanced use"
+    link:
+      url: "https://collection-analysis.cincy.pl/"
+      text: "collection-analysis.cincy.pl"
+    notes: |
+      "That's exactly what we built — and it costs $5/month to run."
+
+  - type: content
+    title: "What is Datasette?"
+    bullets:
+      - 'Created by Simon Willison (co-creator of Django)'
+      - '"A tool for exploring and publishing data"'
+      - >-
+        Aimed at <span class="accent">journalists</span>,
+        <span class="accent">museum curators</span>,
+        <span class="accent">archivists</span>,
+        <span class="accent">local governments</span>,
+        and <span class="accent">anyone else who has data</span>
+      - "Read-only by default &mdash; safe to hand to anyone"
+    link:
+      url: "https://datasette.io/"
+      text: "datasette.io"
+    no_iframe: true
+
+  - type: content
+    title: "Things I &#10084;&#65039; about Datasette"
+    bullets:
+      - 'Written in Python / Available via <a href="pypi.org">PyPI.org</a>'
+      - "Easy and intuitive to use"
+      - "Well-documented"
+      - "Built-in API... THE API IS SQL!"
+      - "Open source + supportive developer"
+      - 'Flexible deployment with <span class="accent">CHEAP</span> hosting options'
+
+  - type: content
+    title: "The Pipeline"
+    code:
+      language: text
+      body: |
+        Sierra ILS PostgreSQL (Sierra DB)
+            ↓
+        Python Scripts (sqlite-utils)
+            ↓
+        SQLite Database
+            ↓
+        Datasette → collection-analysis.cincy.pl
+    link:
+      url: "https://github.com/cincinnatilibrary/collection-analysis"
+      text: "github.com/cincinnatilibrary/collection-analysis"
+    no_iframe: true
+
+  - type: iframe
+    title: "Demo Time!"
+    url: "https://collection-analysis.cincy.pl/"
+    notes: |
+      Demo flow: Browse item table → Facet by location → Facet by format →
+      Filter to single branch → CSV export
+
+  - type: content
+    title: "Hosting: $5 a Month. Seriously."
+    bullets:
+      - 'DigitalOcean Droplet: <span class="accent">$5/month</span>'
+    sub_bullets:
+      - "1 vCPU, 1 GB RAM, 25 GB SSD"
+    bullets_after:
+      - "Apache reverse proxy (free)"
+      - "Let's Encrypt TLS (free)"
+      - "Datasette + Python (free, open source)"
+
+  # =============================================
+  # BRIDGE: Collection Analysis → Newsdex
+  # =============================================
+
+  - type: content
+    title: "Once You Have the Pattern, Everything Is a Dataset"
+    bullets:
+      - "ILS collection data &#10003;"
+      - "Newspaper indexes (Newsdex) &mdash; <em>let me show you...</em>"
+
+  # =============================================
+  # PART 2: From Index Cards to SQLite (Newsdex)
+  # =============================================
+
+  - type: content
+    title: ""
+    background: "#0C2340"
+    custom_html: |
+      <div style="display: flex; align-items: center; gap: 2em;">
+        <div style="flex: 0 0 auto;">
+          <img src="assets/chalmers-hadley.jpg" alt="Chalmers Hadley"
+               style="width: 220px; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.4);">
+        </div>
+        <div style="flex: 1; text-align: left;">
+          <h2 style="font-size: 0.85em; font-style: italic; font-weight: 400; line-height: 1.5; color: #F6F1EB;">"News reports of major local happenings
+          would be matters of history some day and that the proper indexing of such items
+          in time would be valuable"</h2>
+          <p style="font-size: 0.55em; margin-top: 1em; color: #BCBEC0;">
+            &mdash; Chalmers Hadley, Head Librarian, CHPL (1927)
+          </p>
+        </div>
+      </div>
+    notes: |
+      Let this quote land. Almost a century of continuous,
+      intentional effort by generations of librarians.
+
+  - type: content
+    title: "65 Years of Index Cards"
+    subtitle: "1927 &mdash; 1992"
+    custom_html: |
+      <div style="display: flex; align-items: flex-start; gap: 1.5em;">
+        <div style="flex: 1; text-align: left;">
+          <ul>
+            <li>Librarians hand-typed index cards for newspaper articles</li>
+            <li>Each card: title, newspaper, date, page, column, subject</li>
+            <li>Coverage: Enquirer, Post, Herald, Cincinnati Magazine, and more</li>
+            <li>Selected coverage reaching back to the early 1800s</li>
+          </ul>
+        </div>
+        <div style="flex: 0 0 auto;">
+          <img src="assets/card-catalog.jpg" alt="Newsdex card catalog at CHPL"
+               style="width: 340px; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+        </div>
+      </div>
+    notes: |
+      Every card represents a librarian reading an article
+      and deciding it was worth preserving.
+
+  - type: content
+    title: "Newsdex Goes Digital &mdash; Then Gets Stuck"
+    bullets:
+      - 'March 1992: card catalog computerized as "Newsdex" in Millennium ILS'
+      - "~1.8 million MARC records of newspaper citations"
+      - "CHPL migrated to Sierra &mdash; but Newsdex stayed on old Millennium server"
+      - "Maintaining a legacy ILS alongside Sierra: costly and fragile"
+      - '<span class="accent">Goal:</span> preserve the data, decommission Millennium'
+    notes: |
+      The data was trapped in a system we needed to turn off.
+      MARC export + Datasette gave us a way out that actually
+      improved access.
+
+  - type: columns
+    title: "The Data: MARC &rarr; Something Useful"
+    left:
+      heading: "MARC Record"
+      code:
+        language: text
+        body: |
+          245    $a Chart shows rapid rise
+                 of river: Comparison of
+                 present flood with
+                 previous high stages
+          260    $c 1937
+          650    $a Floods
+          650    $a Floods (1937)
+          650    $a Floods (1913)
+          650    $a Floods (1884)
+          773    $a Cincinnati Enquirer
+                 $g 01/27/1937 6:1 pic
+    right:
+      heading: "What a human wants"
+      code:
+        language: text
+        body: |
+          Title:     Chart shows rapid rise
+                     of river...
+          Newspaper: Cincinnati Enquirer
+          Date:      1937-01-27
+          Page:      6
+          Column:    1
+          Image:     Yes
+          Subjects:  Floods; Floods (1937);
+                     Floods (1913);
+                     Floods (1884)
+    notes: |
+      Real record from the Newsdex MARC export. The 1937 flood
+      is iconic in Cincinnati. The librarian cross-referenced
+      three different flood years.
+
+  - type: content
+    title: "The Newsdex Pipeline"
+    code:
+      language: text
+      body: |
+        Millennium ILS → MARC Export (.mrc)
+            ↓
+        pymarc + sqlite-utils (Python)
+            ↓
+        SQLite Database
+            ↓
+        Datasette → newsdex.chpl.org
+    link:
+      url: "https://github.com/cincinnatilibrary/newsdex"
+      text: "github.com/cincinnatilibrary/newsdex"
+    no_iframe: true
+
+  - type: iframe
+    title: "A Century of Cincinnati News, Explorable"
+    url: "https://newsdex.chpl.org/"
+    notes: |
+      Demo flow: Show total record count → Full-text search "1937 flood" →
+      Facet by newspaper → Facet by year/decade
+
+  # =============================================
+  # COMBINED CLOSING
+  # =============================================
+
+  - type: content
+    title: "Resources"
+    links_list:
+      - url: "https://collection-analysis.cincy.pl/"
+        text: "collection-analysis.cincy.pl &mdash; Collection Analysis (live)"
+      - url: "https://newsdex.chpl.org/"
+        text: "newsdex.chpl.org &mdash; Newsdex (live search)"
+      - url: "https://chpl.org/blogs/post/newsdex-upgrade/"
+        text: "chpl.org/blogs/post/newsdex-upgrade &mdash; The Full Newsdex Story"
+      - url: "https://github.com/cincinnatilibrary"
+        text: "github.com/cincinnatilibrary &mdash; CHPL on GitHub"
+      - url: "https://datasette.io/"
+        text: "datasette.io &mdash; Datasette"
+
+  - type: closing
+    title: "Thanks!"
+    body: |
+      Thank you to the Genealogy &amp; Local History Department &mdash;
+      they created the Newsdex data over nearly 100 years.
+      <br><br>
+      &#10084;&#65039; Datasette? Let's talk!

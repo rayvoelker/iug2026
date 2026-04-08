@@ -180,7 +180,7 @@ Business Courier, Downtowner. Selected coverage reaching back to the early 1800s
 
 ### Key URLs
 
-- Newsdex (live search): https://newsdex.cincinnatilibrary.org/
+- Newsdex (live search): https://newsdex.chpl.org/
 - Newsdex GitHub repo: https://github.com/cincinnatilibrary/newsdex
 - CHPL Blog Post: https://chpl.org/blogs/post/newsdex-upgrade/
 - CHPL Genealogy & Local History: https://chpl.org/genealogy-history/

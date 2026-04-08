@@ -4,8 +4,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<meta name="description" content="I Love Datasette: From ILS Snapshots to a $5/Month Analysis Platform - IUG 2026">
-		<meta name="keywords" content="Ray Voelker, Cincinnati & Hamilton County Public Library, IUG, IUG 2026, Datasette, Python, SQLite, SQL, Collection Analysis">
+		<meta name="description" content="I Love Datasette: Collection Analysis and the Newsdex Project at Cincinnati & Hamilton County Public Library - IUG 2026">
+		<meta name="keywords" content="Ray Voelker, Cincinnati & Hamilton County Public Library, IUG, IUG 2026, Datasette, Python, SQLite, SQL, Collection Analysis, Newsdex, MARC, pymarc, newspaper index">
 		<meta name="author" content="Ray Voelker">
 
 		<title>I &#10084;&#65039; Datasette - IUG 2026 - Ray Voelker</title>
@@ -38,7 +38,7 @@
 				<section class="title-slide" data-background-color="#F3E4C5" data-state="no-footer">
 					<div class="title-content">
 						<h1>I &#10084;&#65039; Datasette</h1>
-						<h2>From ILS Data to a $5/Month Analysis Platform</h2>
+						<h2>Collection Analysis &amp; the Newsdex Project at CHPL</h2>
 						<p>
 							Ray Voelker<br>
 							Cincinnati &amp; Hamilton County Public Library<br>
@@ -109,10 +109,8 @@
 
 
 					<aside class="notes">
-						Riley Walz's "Library Spy" (walzr.com/library-spy) scrapes NYPL
-availability to show real-time checkouts. It went viral.
+						Riley Walz's "Library Spy" scrapes NYPL availability.
 If you don't publish your data, people scrape your WebPAC.
-Datasette gives you a proper API instead.
 
 					</aside>
 
@@ -228,8 +226,6 @@ Datasette gives you a proper API instead.
 
 						<li>Well-documented</li>
 
-						<li>Useful, large, and growing plugin library</li>
-
 						<li>Built-in API... THE API IS SQL!</li>
 
 						<li>Open source + supportive developer</li>
@@ -292,8 +288,8 @@ Datasette → collection-analysis.cincy.pl
 					</iframe>
 
 					<aside class="notes">
-						# Demo flow: Browse item table → Facet by location → Facet by format →
-# Filter to single branch → Custom SQL query → CSV export → JSON API
+						Demo flow: Browse item table → Facet by location → Facet by format →
+Filter to single branch → CSV export
 
 					</aside>
 
@@ -354,7 +350,102 @@ Datasette → collection-analysis.cincy.pl
 
 						<li>ILS collection data &#10003;</li>
 
-						<li>Newspaper indexes (Newsdex) &mdash; <em>up next!</em></li>
+						<li>Newspaper indexes (Newsdex) &mdash; <em>let me show you...</em></li>
+
+
+
+					</ul>
+
+
+
+
+
+
+
+
+				</section>
+
+
+
+
+				<section data-background-color="#0C2340">
+
+					<div style="display: flex; align-items: center; gap: 2em;">
+  <div style="flex: 0 0 auto;">
+    <img src="assets/chalmers-hadley.jpg" alt="Chalmers Hadley"
+         style="width: 220px; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.4);">
+  </div>
+  <div style="flex: 1; text-align: left;">
+    <h2 style="font-size: 0.85em; font-style: italic; font-weight: 400; line-height: 1.5; color: #F6F1EB;">"News reports of major local happenings
+    would be matters of history some day and that the proper indexing of such items
+    in time would be valuable"</h2>
+    <p style="font-size: 0.55em; margin-top: 1em; color: #BCBEC0;">
+      &mdash; Chalmers Hadley, Head Librarian, CHPL (1927)
+    </p>
+  </div>
+</div>
+
+
+
+					<aside class="notes">
+						Let this quote land. Almost a century of continuous,
+intentional effort by generations of librarians.
+
+					</aside>
+
+				</section>
+
+
+
+
+				<section>
+
+					<div style="display: flex; align-items: flex-start; gap: 1.5em;">
+  <div style="flex: 1; text-align: left;">
+    <ul>
+      <li>Librarians hand-typed index cards for newspaper articles</li>
+      <li>Each card: title, newspaper, date, page, column, subject</li>
+      <li>Coverage: Enquirer, Post, Herald, Cincinnati Magazine, and more</li>
+      <li>Selected coverage reaching back to the early 1800s</li>
+    </ul>
+  </div>
+  <div style="flex: 0 0 auto;">
+    <img src="assets/card-catalog.jpg" alt="Newsdex card catalog at CHPL"
+         style="width: 340px; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+  </div>
+</div>
+
+
+
+					<aside class="notes">
+						Every card represents a librarian reading an article
+and deciding it was worth preserving.
+
+					</aside>
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>Newsdex Goes Digital &mdash; Then Gets Stuck</h2>
+
+
+
+					<ul>
+
+						<li>March 1992: card catalog computerized as "Newsdex" in Millennium ILS</li>
+
+						<li>~1.8 million MARC records of newspaper citations</li>
+
+						<li>CHPL migrated to Sierra &mdash; but Newsdex stayed on old Millennium server</li>
+
+						<li>Maintaining a legacy ILS alongside Sierra: costly and fragile</li>
+
+						<li><span class="accent">Goal:</span> preserve the data, decommission Millennium</li>
 
 
 
@@ -368,8 +459,111 @@ Datasette → collection-analysis.cincy.pl
 
 
 					<aside class="notes">
-						Tease Talk 2: "We also used this to liberate a century of Cincinnati
-newspaper index data — that's the Newsdex project."
+						The data was trapped in a system we needed to turn off.
+MARC export + Datasette gave us a way out that actually
+improved access.
+
+					</aside>
+
+				</section>
+
+
+
+
+				<section>
+					<h2>The Data: MARC &rarr; Something Useful</h2>
+					<div class="columns" style="font-size: 0.65em;">
+						<div class="col">
+							<h3>MARC Record</h3>
+
+							<pre><code data-trim class="text">
+245    $a Chart shows rapid rise
+       of river: Comparison of
+       present flood with
+       previous high stages
+260    $c 1937
+650    $a Floods
+650    $a Floods (1937)
+650    $a Floods (1913)
+650    $a Floods (1884)
+773    $a Cincinnati Enquirer
+       $g 01/27/1937 6:1 pic
+							</code></pre>
+
+						</div>
+						<div class="col">
+							<h3>What a human wants</h3>
+
+							<pre><code data-trim class="text">
+Title:     Chart shows rapid rise
+           of river...
+Newspaper: Cincinnati Enquirer
+Date:      1937-01-27
+Page:      6
+Column:    1
+Image:     Yes
+Subjects:  Floods; Floods (1937);
+           Floods (1913);
+           Floods (1884)
+							</code></pre>
+
+						</div>
+					</div>
+
+					<aside class="notes">
+						Real record from the Newsdex MARC export. The 1937 flood
+is iconic in Cincinnati. The librarian cross-referenced
+three different flood years.
+
+					</aside>
+
+				</section>
+
+
+
+
+				<section>
+
+
+					<h2>The Newsdex Pipeline</h2>
+
+
+
+
+
+					<pre><code data-trim class="text">
+Millennium ILS → MARC Export (.mrc)
+    ↓
+pymarc + sqlite-utils (Python)
+    ↓
+SQLite Database
+    ↓
+Datasette → newsdex.chpl.org
+					</code></pre>
+
+
+
+					<p style="margin-top: 0.8em; font-size: 0.6em;">
+						<a href="https://github.com/cincinnatilibrary/newsdex" target="_top">github.com/cincinnatilibrary/newsdex</a>
+					</p>
+
+
+
+
+				</section>
+
+
+
+
+				<section data-background="white">
+					<h2>A Century of Cincinnati News, Explorable</h2>
+					<iframe src="https://newsdex.chpl.org/"
+						style="width: 100%; height: 550px; border: 2px solid #E8E8E8; border-radius: 8px;">
+					</iframe>
+
+					<aside class="notes">
+						Demo flow: Show total record count → Full-text search "1937 flood" →
+Facet by newspaper → Facet by year/decade
 
 					</aside>
 
@@ -390,13 +584,15 @@ newspaper index data — that's the Newsdex project."
 
 					<ul style="font-size: 0.7em;">
 
-						<li><a href="https://collection-analysis.cincy.pl/" target="_top">collection-analysis.cincy.pl &mdash; CHPL Collection Analysis (live)</a></li>
+						<li><a href="https://collection-analysis.cincy.pl/" target="_top">collection-analysis.cincy.pl &mdash; Collection Analysis (live)</a></li>
 
-						<li><a href="https://github.com/cincinnatilibrary/collection-analysis" target="_top">github.com/cincinnatilibrary/collection-analysis &mdash; Source Code</a></li>
+						<li><a href="https://newsdex.chpl.org/" target="_top">newsdex.chpl.org &mdash; Newsdex (live search)</a></li>
+
+						<li><a href="https://chpl.org/blogs/post/newsdex-upgrade/" target="_top">chpl.org/blogs/post/newsdex-upgrade &mdash; The Full Newsdex Story</a></li>
+
+						<li><a href="https://github.com/cincinnatilibrary" target="_top">github.com/cincinnatilibrary &mdash; CHPL on GitHub</a></li>
 
 						<li><a href="https://datasette.io/" target="_top">datasette.io &mdash; Datasette</a></li>
-
-						<li><a href="https://simonwillison.net/" target="_top">simonwillison.net &mdash; Simon Willison's Blog</a></li>
 
 					</ul>
 
@@ -414,9 +610,10 @@ newspaper index data — that's the Newsdex project."
 					<div class="title-content">
 						<h1 style="font-size: 1.4em;">Thanks!</h1>
 						<p style="font-size: 0.65em; margin-bottom: 1em;">
-							Please let me know if you come up with any cool queries,
-&#10084;&#65039; Datasette as much as I do,
-or want to use this at your library!
+							Thank you to the Genealogy &amp; Local History Department &mdash;
+they created the Newsdex data over nearly 100 years.
+<br><br>
+&#10084;&#65039; Datasette? Let's talk!
 
 						</p>
 						<p>

@@ -1,11 +1,11 @@
 meta:
   title: "From Index Cards to SQLite"
   subtitle: "Liberating a Century of Cincinnati News with Datasette"
-  description: "From Index Cards to SQLite: Liberating a Century of Cincinnati News with Datasette - IUG 2026"
+  description: "From Index Cards to Millennium ILS to SQLite: Liberating a Century of Cincinnati News with Datasette - IUG 2026"
   keywords: "Ray Voelker, Cincinnati & Hamilton County Public Library, IUG, IUG 2026, Datasette, Newsdex, MARC, pymarc, SQLite, newspaper index"
   author: "Ray Voelker"
   institution: "Cincinnati &amp; Hamilton County Public Library"
-  email: "ray.voelker@cincinnatilibrary.org"
+  email: "ray.voelker@chpl.org"
   filename: "talk2-newsdex-from-cards-to-sqlite.html"
 
 slides:
@@ -17,222 +17,139 @@ slides:
 
   - type: content
     title: ""
-    background: "#00223D"
+    background: "#0C2340"
     custom_html: |
-      <h2 style="font-size: 1em; font-style: italic;">"News reports of major local happenings
-      would be matters of history some day and that the proper indexing of such items
-      in time would be valuable"</h2>
-      <p style="font-size: 0.6em; margin-top: 1.5em;">
-        &mdash; Chalmers Hadley, Head Librarian, CHPL (1927)
-      </p>
+      <div style="display: flex; align-items: center; gap: 2em;">
+        <div style="flex: 0 0 auto;">
+          <img src="assets/chalmers-hadley.jpg" alt="Chalmers Hadley"
+               style="width: 220px; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.4);">
+        </div>
+        <div style="flex: 1; text-align: left;">
+          <h2 style="font-size: 0.85em; font-style: italic; font-weight: 400; line-height: 1.5; color: #F6F1EB;">"News reports of major local happenings
+          would be matters of history some day and that the proper indexing of such items
+          in time would be valuable"</h2>
+          <p style="font-size: 0.55em; margin-top: 1em; color: #BCBEC0;">
+            &mdash; Chalmers Hadley, Head Librarian, CHPL (1927)
+          </p>
+        </div>
+      </div>
     notes: |
-      Let this quote land. It's a beautiful articulation of the library's mission.
-      The audience should feel the weight of almost a century of continuous,
+      Let this quote land. Almost a century of continuous,
       intentional effort by generations of librarians.
 
   - type: content
     title: "65 Years of Index Cards"
     subtitle: "1927 &mdash; 1992"
-    bullets:
-      - "Librarians hand-typed index cards for newspaper articles"
-      - "Each card: title, newspaper, date, page, column, subject, image indicator"
-      - "Arranged by subject in the card catalog"
-      - "Coverage: Enquirer, Post, Herald, Cincinnati Magazine, Business Courier, Downtowner"
-      - "Selected coverage reaching back to the early 1800s"
+    custom_html: |
+      <div style="display: flex; align-items: flex-start; gap: 1.5em;">
+        <div style="flex: 1; text-align: left;">
+          <ul>
+            <li>Librarians hand-typed index cards for newspaper articles</li>
+            <li>Each card: title, newspaper, date, page, column, subject</li>
+            <li>Coverage: Enquirer, Post, Herald, Cincinnati Magazine, and more</li>
+            <li>Selected coverage reaching back to the early 1800s</li>
+          </ul>
+        </div>
+        <div style="flex: 0 0 auto;">
+          <img src="assets/card-catalog.jpg" alt="Newsdex card catalog at CHPL"
+               style="width: 340px; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+        </div>
+      </div>
     notes: |
-      Emphasize the human element: every card represents a librarian reading an article
-      and deciding it was worth preserving a reference to. The subject assignments are
-      particularly valuable — expert human classification, not automated tagging.
+      Every card represents a librarian reading an article
+      and deciding it was worth preserving. Expert human
+      classification, not automated tagging.
 
   - type: content
-    title: "Newsdex Goes Digital (1992)"
+    title: "Newsdex Goes Digital &mdash; Then Gets Stuck"
     bullets:
-      - "Card catalog computerized in the early 1990s"
-      - 'March 1992: newspaper index becomes "Newsdex"'
-      - "Provides citations &mdash; not full text"
-      - "Staff continue adding entries, including retroactive indexing pre-1900"
-      - "No library card required &mdash; genuinely open data"
-    link:
-      url: "https://newsdex.cincinnatilibrary.org/"
-      text: "newsdex.cincinnatilibrary.org"
+      - 'March 1992: card catalog computerized as "Newsdex" in Millennium ILS'
+      - "~1.8 million MARC records of newspaper citations"
+      - "CHPL migrated to Sierra &mdash; but Newsdex stayed on old Millennium server"
+      - "Maintaining a legacy ILS alongside Sierra: costly and fragile"
+      - '<span class="accent">Goal:</span> preserve the data, decommission Millennium'
     notes: |
-      Walk through a search example: "1937 flood" returns a citation — Cincinnati Enquirer,
-      January 26, 1937, page 7, column 2, with a picture. "7:2 pic"
-
-  - type: content
-    title: "What If We Could Really Explore It?"
-    bullets:
-      - '"What subjects were most covered in the 1930s vs. the 1960s?"'
-      - '"How many obituaries are indexed per decade?"'
-      - '"Which newspapers have the most coverage?"'
-      - '"Can I browse all articles tagged with ''floods''?"'
-    footer_text: |
-      The existing interface serves <strong>known-item search</strong> well.<br>
-      Datasette serves <strong>exploration and discovery</strong>.
+      This is the practical motivation. The data was trapped in a system
+      we needed to turn off. MARC export + Datasette gave us a way out
+      that actually improved access.
 
   - type: columns
-    title: "The Data Format: MARC"
+    title: "The Data: MARC &rarr; Something Useful"
     left:
       heading: "MARC Record"
       code:
         language: text
         body: |
-          245 10 $a Relief agencies
-                 move swiftly
-          260    $b Cincinnati Enquirer
-                 $c 1937-01-26
-          300    $a 7:2 pic
-          650  0 $a Floods
-          650  0 $a Emergency management
+          245    $a Chart shows rapid rise
+                 of river: Comparison of
+                 present flood with
+                 previous high stages
+          260    $c 1937
+          650    $a Floods
+          650    $a Floods (1937)
+          650    $a Floods (1913)
+          650    $a Floods (1884)
+          773    $a Cincinnati Enquirer
+                 $g 01/27/1937 6:1 pic
     right:
       heading: "What a human wants"
       code:
         language: text
         body: |
-          Title:     Relief agencies move swiftly
+          Title:     Chart shows rapid rise
+                     of river...
           Newspaper: Cincinnati Enquirer
-          Date:      1937-01-26
-          Page:      7
-          Column:    2
+          Date:      1937-01-27
+          Page:      6
+          Column:    1
           Image:     Yes
-          Subjects:  Floods; Emergency mgmt
+          Subjects:  Floods; Floods (1937);
+                     Floods (1913);
+                     Floods (1884)
+    notes: |
+      Real record from the Newsdex MARC export. The 1937 flood
+      is iconic in Cincinnati. Note the librarian cross-referenced
+      three different flood years — expert human classification
+      spanning decades of cataloging work.
 
   - type: content
     title: "The Pipeline"
     code:
       language: text
       body: |
-        MARC Export (.mrc file)
+        Millennium ILS → MARC Export (.mrc)
             ↓
-        pymarc (Python)
+        pymarc + sqlite-utils (Python)
             ↓
-        Field Mapping & Cleanup (Jupyter Notebooks)
+        SQLite Database
             ↓
-        sqlite-utils → SQLite Database
-            ↓
-        Datasette
+        Datasette → newsdex.chpl.org
     link:
       url: "https://github.com/cincinnatilibrary/newsdex"
       text: "github.com/cincinnatilibrary/newsdex"
-
-  - type: content
-    title: "Reading MARC with pymarc"
-    code:
-      language: python
-      body: |
-        from pymarc import MARCReader
-
-        with open('newsdex-full-marc-export.mrc', 'rb') as fh:
-            reader = MARCReader(fh)
-            for record in reader:
-                title = record['245']['a'] if record['245'] else None
-                newspaper = record['260']['b'] if record['260'] else None
-                date = record['260']['c'] if record['260'] else None
-
-                subjects = []
-                for field in record.get_fields('650'):
-                    subjects.append(field['a'])
+    no_iframe: true
     notes: |
-      Walk through the defensive coding pattern: not every record has every field.
-      The repeatable fields (650 subjects) are particularly interesting — they
-      represent the librarians' classification work across decades.
-
-  - type: table
-    title: "The Translation Layer"
-    headers: ["MARC", "Subfield", "Becomes", "Notes"]
-    rows:
-      - ["245", "$a", "<code>title</code>", "Article title"]
-      - ["260", "$b", "<code>newspaper</code>", "Publication name"]
-      - ["260", "$c", "<code>date</code>", "Needs normalization!"]
-      - ["300", "$a", "<code>page</code>, <code>column</code>, <code>has_image</code>", 'Parse "7:2 pic"']
-      - ["650", "$a", "<code>subjects</code>", "Repeatable (JSON array)"]
-      - ["008", "pos 7-10", "<code>year</code>", "For sorting/faceting"]
-    footer_text: |
-      This mapping requires understanding of <em>both</em> the MARC standard
-      <em>and</em> decades of Newsdex cataloging conventions.
-
-  - type: content
-    title: "Into SQLite with sqlite-utils"
-    code:
-      language: python
-      body: |
-        import sqlite_utils
-
-        db = sqlite_utils.Database("newsdex.db")
-
-        # Insert records
-        db["articles"].insert_all(records, pk="record_id")
-
-        # Enable full-text search
-        db["articles"].enable_fts(["title", "subjects", "notes"])
-
-        # Create indexes for faceting
-        db["articles"].create_index(["newspaper"])
-        db["articles"].create_index(["year"])
+      Keep this quick. The point is that the tools are simple and
+      the whole pipeline is open source on GitHub.
 
   - type: iframe
     title: "A Century of Cincinnati News, Explorable"
-    url: "https://newsdex.cincinnatilibrary.org/"
+    url: "https://newsdex.chpl.org/"
     notes: |
       Demo flow: Show total record count → Full-text search "1937 flood" →
-      Facet by newspaper → Facet by year/decade → Search for obituaries →
-      Compare with traditional Newsdex interface
-
-  - type: content
-    title: "Sharing the Story"
-    bullets:
-      - "CHPL blog post tells the full Newsdex history"
-      - "Includes Hadley portrait, card catalog photos, video tutorial"
-      - "A model for communicating technical/data work to the public"
-      - '"A library card with us is not necessary to use Newsdex"'
-    link:
-      url: "https://chpl.org/blogs/post/newsdex-upgrade/"
-      text: "chpl.org/blogs/post/newsdex-upgrade"
-
-  - type: content
-    title: "Lessons Learned"
-    numbered:
-      - title: "Domain expertise is irreplaceable"
-        detail: "Developers + librarians together > either alone"
-      - title: '"Good enough" ships; "perfect" doesn''t'
-        detail: "Get the data out there and iterate"
-      - title: "The presentation layer matters"
-        detail: "Same data in MARC vs. Datasette tells completely different stories"
-      - title: "Historical data has compounding value"
-        detail: "Every year, the older entries become more valuable"
-
-  - type: content
-    title: "The Pattern: Data Liberation"
-    code:
-      language: text
-      body: |
-        Sierra ILS (Collection Snapshots) ──┐
-                                            ├──→ Datasette ──→ Everyone
-        MARC Export (Newsdex)          ─────┘     $5/mo
-                                                Open source
-    footer_text: |
-      If you can get your data into SQLite,<br>
-      Datasette can make it explorable.
+      Facet by newspaper → Facet by year/decade
 
   - type: content
     title: "Resources"
     links_list:
-      - url: "https://newsdex.cincinnatilibrary.org/"
-        text: "newsdex.cincinnatilibrary.org &mdash; Newsdex (live search)"
+      - url: "https://newsdex.chpl.org/"
+        text: "newsdex.chpl.org &mdash; Newsdex (live search)"
       - url: "https://chpl.org/blogs/post/newsdex-upgrade/"
-        text: "chpl.org/blogs/post/newsdex-upgrade &mdash; CHPL Blog: Newsdex History"
+        text: "chpl.org/blogs/post/newsdex-upgrade &mdash; The Full Newsdex Story"
       - url: "https://github.com/cincinnatilibrary/newsdex"
-        text: "github.com/cincinnatilibrary/newsdex &mdash; Newsdex Repo (MARC + notebooks)"
-      - url: "https://collection-analysis.cincy.pl/"
-        text: "collection-analysis.cincy.pl &mdash; Collection Analysis (live)"
+        text: "github.com/cincinnatilibrary/newsdex &mdash; Source Code + Notebooks"
       - url: "https://datasette.io/"
         text: "datasette.io &mdash; Datasette"
-      - url: "https://sqlite-utils.datasette.io/"
-        text: "sqlite-utils.datasette.io &mdash; sqlite-utils"
-      - url: "https://pypi.org/project/pymarc/"
-        text: "pypi.org/project/pymarc &mdash; pymarc"
-      - url: "https://github.com/cincinnatilibrary"
-        text: "github.com/cincinnatilibrary &mdash; CHPL GitHub"
 
   - type: closing
     title: "Thank You!"
